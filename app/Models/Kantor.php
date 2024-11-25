@@ -11,4 +11,9 @@ class Kantor extends Model
     protected $fillable = [
         'nama_kantor',
     ];
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer('users_id')->references('id')->on('users');
+            $table->unsignedBigInteger('users_id')->references('id')->on('users');
 
             $table->string('first_name');
             $table->string('last_name');
@@ -26,17 +26,21 @@ return new class extends Migration
             $table->string('agama');
 
             $table->string('alamat');
-            $table->integer('provinces_id');
-            $table->integer('regencies_id');
-            $table->integer('districts_id');
+
+            $table->unsignedBigInteger('province_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('subdistrict_id')->nullable();
 
             $table->string('ijasah_terakhir');
+            $table->integer('divisi')->references('id')->on('divisis');
             $table->integer('jabatan_sekarang')->references('id')->on('jabatans');
             $table->date('tanggal_masuk');
             $table->integer('kantor');
             $table->string('foto_ktp');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

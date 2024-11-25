@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Profile extends Model
 {
     protected $table = 'profiles';
+
+    protected $guarded = [];
 
     protected $fillable = [
         'users_id',
@@ -21,11 +24,14 @@ class Profile extends Model
         'agama',
 
         'alamat',
-        'provinces_id',
-        'regencies_id',
-        'districts_id',
+
+        'province_id',
+        'city_id',
+        'district_id',
+        'subdistrict_id',
 
         'ijasah_terakhir',
+        'divisi',
         'jabatan_sekarang',
         'tanggal_masuk',
         'kantor',
@@ -35,5 +41,32 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // Satu profile milik satu divisi
+    public function divisi()
+    {
+        return $this->belongsTo(Divisi::class);
+    }
+
+    // Satu profile milik satu jabatan
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class);
+    }
+
+    public function kantor(): HasOne
+    {
+        return $this->hasOne(Kantor::class, 'id', 'nama_kantor');
+    }
+
+    protected static function booted()
+    {
+        static::saving(function ($model) {
+            // Pastikan nik tidak null dan hilangkan spasi
+            if ($model->nik) {
+                $model->nik = str_replace(' ', '', $model->nik);
+            }
+        });
     }
 }

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kantors', function (Blueprint $table) {
+        Schema::create('jabatans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kantor');
-            $table->double('latitude');
-            $table->double('longitude');
-
+            $table->unsignedBigInteger('divisi_id')->references('id')->on('divisis');
+            $table->string('jabatan');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kantors');
+        Schema::dropIfExists('jabatans');
     }
 };

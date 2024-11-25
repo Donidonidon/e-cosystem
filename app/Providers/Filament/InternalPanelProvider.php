@@ -34,6 +34,9 @@ class InternalPanelProvider extends PanelProvider
             ->emailVerification()
             ->profile(EditProfile::class)
             // ->authGuard('web')
+            ->favicon(
+                asset('assets/images/logo-favicon.png'),
+            )
             ->colors([
                 'primary' => Color::Amber,
             ])

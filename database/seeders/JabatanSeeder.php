@@ -14,51 +14,89 @@ class JabatanSeeder extends Seeder
     public function run(): void
     {
         DB::table('jabatans')->insert([
-            ['jabatan' => 'Direktur Utama'],
-            ['jabatan' => 'Direktur Bisnis'],
-            ['jabatan' => 'PE Manrisk'],
-            ['jabatan' => 'PE Audit Internal'],
-            ['jabatan' => 'HRD'],
+            // Pimpinan
+            ['divisi_id' => 1, 'jabatan' => 'Direktur Utama'],
+            ['divisi_id' => 1, 'jabatan' => 'Direktur Bisnis'],
+            ['divisi_id' => 1, 'jabatan' => 'Pimpinan Cabang'],
+            ['divisi_id' => 1, 'jabatan' => 'Pimpinan Kas Tlogomas'],
+            ['divisi_id' => 1, 'jabatan' => 'Pimpinan Kas Pakisaji'],
 
-            ['jabatan' => 'Pimpinan Cabang'],
-            ['jabatan' => 'Pimpinan Kas Tlogomas'],
-            ['jabatan' => 'Pimpinan Kas Pakisaji'],
+            // PE
+            ['divisi_id' => 2, 'jabatan' => 'HRD'],
+            ['divisi_id' => 2, 'jabatan' => 'Audit'],
+            ['divisi_id' => 2, 'jabatan' => 'Risk'],
+            ['divisi_id' => 2, 'jabatan' => 'Legal'],
 
-            ['jabatan' => 'Team Leader Corporate'],
-            ['jabatan' => 'Account Officer Corporate'],
-            ['jabatan' => 'Fundind Corporate'],
-            ['jabatan' => 'Fundind Retail'],
+            // Team Leader
+            ['divisi_id' => 3, 'jabatan' => 'Team Leader Lending'],
+            ['divisi_id' => 3, 'jabatan' => 'Team Leader Funding'],
+            ['divisi_id' => 3, 'jabatan' => 'Team Leader Operational'],
+            ['divisi_id' => 3, 'jabatan' => 'Team Leader Collection'],
+            ['divisi_id' => 3, 'jabatan' => 'Team Leader Corporate'],
+            ['divisi_id' => 3, 'jabatan' => 'Team Leader Digital Marketing'],
 
-            ['jabatan' => 'Team Leader Operasional'],
-            ['jabatan' => 'Admin Tabungan'],
-            ['jabatan' => 'Customer Service'],
-            ['jabatan' => 'Kasir'],
-            ['jabatan' => 'Accounting'],
-            ['jabatan' => 'Admin Kredit'],
-            ['jabatan' => 'Admin Jaminan'],
+            // Lending
+            ['divisi_id' => 4, 'jabatan' => 'AO Sertif'],
+            ['divisi_id' => 4, 'jabatan' => 'AO Remun'],
+            ['divisi_id' => 4, 'jabatan' => 'AO Multiguna'],
+            ['divisi_id' => 4, 'jabatan' => 'AO Haji'],
+            ['divisi_id' => 4, 'jabatan' => 'AO Corporate'],
+            ['divisi_id' => 4, 'jabatan' => 'AO Digital Marketing'],
 
-            ['jabatan' => 'Team Leader Analis'],
-            ['jabatan' => 'Analis'],
+            //Funding
+            ['divisi_id' => 5, 'jabatan' => 'Funding Corporate'],
+            ['divisi_id' => 5, 'jabatan' => 'Funding Retail'],
 
-            ['jabatan' => 'Team Leader Collection'],
-            ['jabatan' => 'Remedial'],
-            ['jabatan' => 'Field Call'],
-            ['jabatan' => 'Recovery'],
+            //Operational
+            ['divisi_id' => 6, 'jabatan' => 'Accounting'],
+            ['divisi_id' => 6, 'jabatan' => 'Kasir'],
+            ['divisi_id' => 6, 'jabatan' => 'Tabungan'],
+            ['divisi_id' => 6, 'jabatan' => 'Customer Service'],
+            ['divisi_id' => 6, 'jabatan' => 'Driver'],
+            ['divisi_id' => 6, 'jabatan' => 'OB'],
+            ['divisi_id' => 6, 'jabatan' => 'Security'],
 
-            ['jabatan' => 'Team Leader Account Officer'],
-            ['jabatan' => 'Account Officer'],
+            //Collection
+            ['divisi_id' => 7, 'jabatan' => 'Remedial'],
+            ['divisi_id' => 7, 'jabatan' => 'Field Collection'],
 
-            ['jabatan' => 'Team Leader Digital Marketing'],
-            ['jabatan' => 'Account Officer Digital'],
-            ['jabatan' => 'Productions'],
-            ['jabatan' => 'IT Developer'],
+            //DGM
+            ['divisi_id' => 8, 'jabatan' => 'Productions'],
+            ['divisi_id' => 8, 'jabatan' => 'Branding'],
+            ['divisi_id' => 8, 'jabatan' => 'IT Developer'],
 
-            ['jabatan' => 'Account Officer Haji'],
-            ['jabatan' => 'Account Officer Bidan'],
+            // ['divisi_id' => 1, 'jabatan' => 'PE Manrisk'],
+            // ['divisi_id' => 1, 'jabatan' => 'PE Audit Internal'],
 
-            ['jabatan' => 'OB'],
-            ['jabatan' => 'Driver'],
-            ['jabatan' => 'Security'],
+
+            // ['divisi_id' => 3, 'jabatan' => 'Team Leader Operasional'],
+            // ['divisi_id' => 3, 'jabatan' => 'Admin Tabungan'],
+            // ['divisi_id' => 3, 'jabatan' => 'Customer Service'],
+            // ['divisi_id' => 3, 'jabatan' => 'Kasir'],
+            // ['divisi_id' => 3, 'jabatan' => 'Accounting'],
+            // ['divisi_id' => 3, 'jabatan' => 'Admin Kredit'],
+            // ['divisi_id' => 3, 'jabatan' => 'Admin Jaminan'],
+
+            // ['divisi_id' => 6, 'jabatan' => 'Team Leader Analis'],
+            // ['divisi_id' => 6, 'jabatan' => 'Analis'],
+
+            // ['divisi_id' => 6, 'jabatan' => 'Team Leader Collection'],
+            // ['divisi_id' => 6, 'jabatan' => 'Remedial'],
+            // ['divisi_id' => 6, 'jabatan' => 'Field Call'],
+            // ['divisi_id' => 6, 'jabatan' => 'Recovery'],
+
+            // ['divisi_id' => 5, 'jabatan' => 'Team Leader Account Officer'],
+            // ['divisi_id' => 5, 'jabatan' => 'Account Officer'],
+
+            // ['divisi_id' => 4, 'jabatan' => 'Team Leader Digital Marketing'],
+            // ['divisi_id' => 4, 'jabatan' => 'Account Officer Digital'],
+
+            // ['divisi_id' => 5, 'jabatan' => 'Account Officer Haji'],
+            // ['divisi_id' => 5, 'jabatan' => 'Account Officer Bidan'],
+
+            // ['divisi_id' => 5, 'jabatan' => 'OB'],
+            // ['divisi_id' => 5, 'jabatan' => 'Driver'],
+            // ['divisi_id' => 5, 'jabatan' => 'Security'],
 
         ]);
     }

@@ -9,5 +9,16 @@ class Jabatan extends Model
 {
     use HasFactory;
 
-    protected $table = 'jabatans';
+    protected $fillable = ['divisi_id', 'jabatan'];
+
+    // Satu jabatan milik satu divisi
+    public function divisi()
+    {
+        return $this->belongsTo(Divisi::class);
+    }
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
 }
