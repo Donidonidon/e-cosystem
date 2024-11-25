@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
+use App\Filament\Pages\Auth\EditProfile;
 use Filament\Pages\Auth\EmailVerification\EmailVerificationPrompt;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -30,8 +31,8 @@ class InternalPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->passwordReset()
-            ->emailVerification(EmailVerificationPrompt::class)
-            ->profile()
+            ->emailVerification()
+            ->profile(EditProfile::class)
             // ->authGuard('web')
             ->colors([
                 'primary' => Color::Amber,
