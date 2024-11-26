@@ -45,6 +45,8 @@ class PengkinianResource extends Resource
         return $form
             ->schema([
                 TextInput::make('users_id')
+                    ->label('ID User')
+                    ->columnSpanFull()
                     ->default(Auth::user()->id)
                     ->disabled()
                     ->dehydrated(fn($state) => Auth::user()->id),
@@ -136,27 +138,26 @@ class PengkinianResource extends Resource
                         'S2' => 'S2',
                     ])
                     ->required(),
-                Select::make('divisi')
+                Select::make('divisi_id')
                     ->relationship('divisi', 'name', fn($query) => $query->orderBy('id', 'asc'))
                     ->label('Divisi')
                     ->required()
                     ->reactive()
                     ->afterStateUpdated(function (callable $set) {
-                        // Kosongkan jabatan_id jika divisi diganti
-                        $set('jabatan_sekarang', null);
-                    }), // Aktifkan reaktivitas agar pilihan jabatan berubah sesuai divisi
+                        $set('jabatan_id', null);
+                    }),
 
-                Select::make('jabatan_sekarang')
+                Select::make('jabatan_id')
                     ->label('Jabatan')
                     ->options(function (callable $get) {
-                        $divisiId = $get('divisi');
+                        $divisiId = $get('divisi_id');
                         return $divisiId
                             ? Jabatan::where('divisi_id', $divisiId)
                             ->orderBy('id', 'asc')
-                            ->pluck('jabatan', 'id')
+                            ->pluck('name', 'id')
                             : [];
                     })
-                    ->disabled(fn(callable $get) => !$get('divisi')) // Disable jika divisi belum dipilih
+                    ->disabled(fn(callable $get) => !$get('divisi_id')) // Disable jika divisi belum dipilih
                     ->required()
                     ->reactive(),
                 DatePicker::make('tanggal_masuk')
@@ -165,7 +166,7 @@ class PengkinianResource extends Resource
                     ->maxDate(Date::now()),
                 Select::make('kantor')
                     ->label('Kantor')
-                    ->relationship('kantor', 'nama_kantor')
+                    ->relationship('kantor', 'name')
                     ->required(),
                 FileUpload::make('foto_ktp')
                     ->label('Foto KTP')
@@ -189,16 +190,16 @@ class PengkinianResource extends Resource
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email'),
-                TextColumn::make('jabatan.jabatan')
-                    ->sortable(),
+                TextColumn::make('jabatan.name')
+                    ->searchable(),
                 TextColumn::make('tanggal_lahir')
                     ->sortable(),
                 TextColumn::make('tanggal_masuk')
                     ->sortable(),
             ])
             ->filters([
-                SelectFilter::make('jabatan')
-                    ->relationship('jabatan', 'jabatan'),
+                SelectFilter::make('jabatan_id')
+                    ->relationship('jabatan', 'name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

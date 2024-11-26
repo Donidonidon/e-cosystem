@@ -9,7 +9,10 @@ class Kantor extends Model
     protected $table = 'kantors';
 
     protected $fillable = [
-        'nama_kantor',
+        'name',
+        'latitude',
+        'longitude',
+        'radius'
     ];
 
     public function profile()

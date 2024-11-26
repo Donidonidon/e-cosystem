@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('jabatans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('divisi_id')->references('id')->on('divisis');
-            $table->string('jabatan');
+            $table->foreignId('divisi_id')->constrained('divisis')->cascadeOnDelete();
+            // $table->unsignedBigInteger('divisi_id')->references('id')->on('divisis');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

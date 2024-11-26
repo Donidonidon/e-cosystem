@@ -8,6 +8,10 @@ class Divisi extends Model
 {
     protected $table = 'divisis';
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function profile()
     {
         return $this->hasMany(Profile::class);

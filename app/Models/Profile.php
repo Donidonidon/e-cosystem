@@ -31,8 +31,8 @@ class Profile extends Model
         'subdistrict_id',
 
         'ijasah_terakhir',
-        'divisi',
-        'jabatan_sekarang',
+        'divisi_id',
+        'jabatan_id',
         'tanggal_masuk',
         'kantor',
         'foto_ktp',
@@ -57,7 +57,7 @@ class Profile extends Model
 
     public function kantor(): HasOne
     {
-        return $this->hasOne(Kantor::class, 'id', 'nama_kantor');
+        return $this->hasOne(Kantor::class);
     }
 
     protected static function booted()

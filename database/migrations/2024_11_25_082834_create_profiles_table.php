@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id')->references('id')->on('users');
+            $table->foreignId('users_id')->unique()->constrained('users')->cascadeOnDelete();
 
             $table->string('first_name');
             $table->string('last_name');
@@ -33,8 +33,10 @@ return new class extends Migration
             $table->unsignedBigInteger('subdistrict_id')->nullable();
 
             $table->string('ijasah_terakhir');
-            $table->integer('divisi')->references('id')->on('divisis');
-            $table->integer('jabatan_sekarang')->references('id')->on('jabatans');
+            $table->foreignId('divisi_id')->constrained('divisis')->cascadeOnDelete();
+            $table->foreignId('jabatan_id')->constrained('jabatans')->cascadeOnDelete();
+            // $table->integer('divisi')->references('id')->on('divisis');
+            // $table->integer('jabatan_sekarang')->references('id')->on('jabatans');
             $table->date('tanggal_masuk');
             $table->integer('kantor');
             $table->string('foto_ktp');

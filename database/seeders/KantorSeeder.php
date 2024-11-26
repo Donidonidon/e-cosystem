@@ -14,10 +14,10 @@ class KantorSeeder extends Seeder
     public function run(): void
     {
         DB::table('kantors')->insert([
-            ['nama_kantor' => 'Kantor Pusat', 'latitude' => -7.979, 'longitude' => 112.624],
-            ['nama_kantor' => 'Kantor Cabang', 'latitude' => -7.979, 'longitude' => 112.624],
-            ['nama_kantor' => 'Kantor Kas Tlogomas', 'latitude' => -7.979, 'longitude' => 112.624],
-            ['nama_kantor' => 'Kantor Kas Pakisaji', 'latitude' => -7.979, 'longitude' => 112.624],
+            ['name' => 'Kantor Pusat', 'latitude' => -7.979, 'longitude' => 112.624, 'created_at' => now()],
+            ['name' => 'Kantor Cabang', 'latitude' => -7.979, 'longitude' => 112.624, 'created_at' => now()],
+            ['name' => 'Kantor Kas Tlogomas', 'latitude' => -7.979, 'longitude' => 112.624, 'created_at' => now()],
+            ['name' => 'Kantor Kas Pakisaji', 'latitude' => -7.979, 'longitude' => 112.624, 'created_at' => now()],
         ]);
     }
 }

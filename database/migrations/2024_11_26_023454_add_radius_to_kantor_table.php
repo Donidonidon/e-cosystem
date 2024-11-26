@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kantors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->double('latitude');
-            $table->double('longitude');
-
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('kantors', function (Blueprint $table) {
+            $table->double('radius')->default(0);
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kantors');
+        Schema::table('kantors', function (Blueprint $table) {
+            $table->dropColumn('radius');
+        });
     }
 };
