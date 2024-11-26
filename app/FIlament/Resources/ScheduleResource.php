@@ -41,13 +41,13 @@ class ScheduleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('shift_id')
+                Tables\Columns\TextColumn::make('shift.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('kantor_id')
+                Tables\Columns\TextColumn::make('kantor.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

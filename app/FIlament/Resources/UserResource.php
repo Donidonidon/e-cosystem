@@ -38,6 +38,11 @@ class UserResource extends Resource
                     ->dehydrateStateUsing(fn($state) => Hash::make($state))
                     ->dehydrated(fn($state) => filled($state))
                     ->required(fn(string $context): bool => $context === 'create'),
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
             ]);
     }
 
@@ -49,6 +54,9 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
