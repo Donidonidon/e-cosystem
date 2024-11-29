@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Attendence;
 use Livewire\Component;
 use App\Models\Schedule;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class Presensi extends Component
@@ -64,10 +64,13 @@ class Presensi extends Component
                     ]);
                 }
             }
-            return redirect()->route('presensi', [
-                'schedule' => $schedule,
-                'insideRadius' => false,
-            ]);
+
+            return redirect()->route('filament.internal.resources.attendences.index');
+
+            // return redirect()->route('presensi', [
+            //     'schedule' => $schedule,
+            //     'insideRadius' => false,
+            // ]);
         }
     }
 }
