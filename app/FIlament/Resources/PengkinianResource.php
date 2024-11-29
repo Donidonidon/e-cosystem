@@ -38,7 +38,8 @@ class PengkinianResource extends Resource
 
     protected static ?string $slug = 'pengkinian';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -184,6 +185,12 @@ class PengkinianResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
+                if (!$is_super_admin) {
+                    $query->where('users_id', Auth::user()->id);
+                }
+            })
             ->columns([
                 TextColumn::make('first_name')
                     ->label('Nama Depan')
