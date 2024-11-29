@@ -14,6 +14,10 @@ class Presensi extends Component
     public $longitude;
     public $insideRadius = false;
     public $timeNow;
+
+    public $isWfa = false;
+    public $deskripsi = '';
+
     public function render()
     {
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
@@ -23,7 +27,9 @@ class Presensi extends Component
         return view('livewire.presensi', [
             'schedule' => $schedule,
             'insideRadius' => $this->insideRadius,
-            'attendance' => $attendance
+            'attendance' => $attendance,
+            'is_wfa' => $this->isWfa,
+            'deskripsi' => $this->deskripsi
         ]);
     }
 
@@ -52,6 +58,8 @@ class Presensi extends Component
                     'start_latitude' => $this->latitude,
                     'start_longitude' => $this->longitude,
                     'start_time' => Carbon::now('Asia/Jakarta')->toTimeString(),
+                    'is_wfa' => $this->isWfa,
+                    'deskripsi' => $this->deskripsi
                 ]);
             } else {
                 $timeNow = Carbon::now('Asia/Jakarta');

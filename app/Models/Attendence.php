@@ -23,6 +23,8 @@ class Attendence extends Model
         'end_longitude',
         'start_time',
         'end_time',
+        'is_wfa',
+        'deskripsi'
     ];
 
     public function user(): BelongsTo
