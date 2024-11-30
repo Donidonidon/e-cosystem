@@ -78,8 +78,12 @@
         let lng;
         const office = [{{ $schedule->kantor->latitude }}, {{ $schedule->kantor->longitude }}];
         const radius = {{ $schedule->kantor->radius }};
+
+        const kantorData = @json($kantor);
+
         let component;
         let marker;
+        let i = 0;
         document.addEventListener('livewire:initialized', function() {
             component = @this;
             map = L.map('map').setView([{{ $schedule->kantor->latitude }}, {{ $schedule->kantor->longitude }}],
@@ -92,32 +96,60 @@
                 fillOpacity: 0.5,
                 radius: radius
             }).addTo(map);
+
+            for (let i = 0; i < kantorData.length; i++) {
+                const kantor = [kantorData[i].latitude, kantorData[i].longitude];
+                const radius = kantorData[i].radius;
+
+                const circle = L.circle(kantor, {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5,
+                    radius: radius
+                }).addTo(map);
+            }
         })
 
 
         function tagLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    lat = position.coords.latitude;
-                    lng = position.coords.longitude;
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
 
+                    // Hapus marker lama jika ada
                     if (marker) {
                         map.removeLayer(marker);
                     }
 
+                    // Tambahkan marker di lokasi pengguna
                     marker = L.marker([lat, lng]).addTo(map);
                     map.setView([lat, lng], 15);
 
-                    //cek didalam radius dan dalam WFA atau tidak
-                    if (isWithinRadius(lat, lng, office, radius)) {
-                        // alert('Anda berada di dalam radius kantor');
+                    // Cek apakah user berada di dalam salah satu circle kantor
+                    let isInsideAnyCircle = false;
+
+                    kantorData.forEach(function(kantor) {
+                        const kantorLatLng = [kantor.latitude, kantor.longitude];
+                        const radius = kantor.radius;
+
+                        if (isWithinRadius(lat, lng, kantorLatLng, radius)) {
+                            isInsideAnyCircle = true;
+                            kantorName = kantor.nama; // Simpan nama kantor
+                        }
+                    });
+
+                    if (isInsideAnyCircle) {
                         component.set('insideRadius', true);
                         component.set('latitude', lat);
                         component.set('longitude', lng);
+                    } else {
+                        component.set('insideRadius', false);
+                        alert('Anda berada di luar radius kantor.');
                     }
-                })
+                });
             } else {
-                alert('Tidak bisa get location');
+                alert('Tidak bisa mendapatkan lokasi.');
             }
         }
 

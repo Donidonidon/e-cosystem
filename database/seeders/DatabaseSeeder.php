@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             JabatanSeeder::class,
             KantorSeeder::class,
             ShiftSeeder::class,
-            ScheduleSeeder::class
+            // ScheduleSeeder::class
         ]);
     }
 }

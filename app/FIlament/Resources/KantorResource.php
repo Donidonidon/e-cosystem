@@ -68,10 +68,7 @@ class KantorResource extends Resource
                                             ->required()
                                             ->numeric(),
                                     ])->columns(2)
-
-
                             ])
-
                     ]),
                 Forms\Components\TextInput::make('radius')
                     ->required()
@@ -107,15 +104,24 @@ class KantorResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
             ]);
     }
 

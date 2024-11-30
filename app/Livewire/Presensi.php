@@ -3,8 +3,11 @@
 namespace App\Livewire;
 
 use App\Models\Attendence;
+use App\Models\Kantor;
+use App\Models\Profile;
 use Livewire\Component;
 use App\Models\Schedule;
+use App\Models\Shift;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,11 +23,19 @@ class Presensi extends Component
 
     public function render()
     {
+
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
+        $kantorTugasID = $schedule->kantor->id; //ID kantor tugas
+        // $kantorTugas = $schedule->kantor; //kantor tugas
+        $kantor = Kantor::where('id', '!=', $kantorTugasID)->get(); //selain kantor tugas
+        dd($kantor);
+
         $attendance = Attendence::where('user_id', Auth::user()->id)
             ->whereDate('created_at', date('Y-m-d'))
             ->first();
         return view('livewire.presensi', [
+            'kantor' => $kantor,
+
             'schedule' => $schedule,
             'insideRadius' => $this->insideRadius,
             'attendance' => $attendance,

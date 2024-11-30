@@ -35,10 +35,8 @@ return new class extends Migration
             $table->string('ijasah_terakhir');
             $table->foreignId('divisi_id')->constrained('divisis')->cascadeOnDelete();
             $table->foreignId('jabatan_id')->constrained('jabatans')->cascadeOnDelete();
-            // $table->integer('divisi')->references('id')->on('divisis');
-            // $table->integer('jabatan_sekarang')->references('id')->on('jabatans');
             $table->date('tanggal_masuk');
-            $table->integer('kantor');
+            $table->foreignId('kantor_id')->constrained('kantors')->cascadeOnDelete();
             $table->string('foto_ktp');
 
             $table->timestamps();

@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Profile extends Model
 {
+    use SoftDeletes;
     protected $table = 'profiles';
 
     protected $guarded = [];
@@ -34,7 +36,7 @@ class Profile extends Model
         'divisi_id',
         'jabatan_id',
         'tanggal_masuk',
-        'kantor',
+        'kantor_id',
         'foto_ktp',
     ];
 

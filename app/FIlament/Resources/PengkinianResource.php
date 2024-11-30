@@ -165,7 +165,7 @@ class PengkinianResource extends Resource
                     ->label('Tanggal Masuk')
                     ->required()
                     ->maxDate(Date::now()),
-                Select::make('kantor')
+                Select::make('kantor_id')
                     ->label('Kantor')
                     ->relationship('kantor', 'name')
                     ->required(),

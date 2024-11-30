@@ -13,16 +13,20 @@ class Attendence extends Model
 
     protected $fillable = [
         'user_id',
+        'kantor_id',
         'schedule_latitude',
         'schedule_longitude',
-        'schedule_start_time',
-        'schedule_end_time',
-        'start_latitude',
-        'start_longitude',
-        'end_latitude',
-        'end_longitude',
-        'start_time',
-        'end_time',
+
+        'schedule_start_time', //get shift pagi
+        'schedule_end_time', //get shift pagi
+
+        'start_latitude', //absen berangkat
+        'start_longitude', //absen berangkat
+        'end_latitude', //absen pulang
+        'end_longitude', //absen pulang
+
+        'start_time', //berngkat
+        'end_time', //pulang
         'is_wfa',
         'deskripsi'
     ];
@@ -30,6 +34,11 @@ class Attendence extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function kantor(): BelongsTo
+    {
+        return $this->belongsTo(Kantor::class);
     }
 
     public function isLate()

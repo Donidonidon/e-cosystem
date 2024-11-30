@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('attendences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('kantor_id')->constrained('kantors')->cascadeOnDelete();
             $table->double('schedule_latitude');
             $table->double('schedule_longitude');
 
