@@ -85,6 +85,8 @@ class AttendenceResource extends Resource
                         'Terlambat' => 'danger',
                     })
                     ->description(fn(Attendence $record): string => $record->onTimeOrLate() ?: ''),
+                Tables\Columns\TextColumn::make('kantor.name')
+                    ->label('Absen di Kantor'),
                 Tables\Columns\TextColumn::make('start_time')
                     ->label('Waktu Datang'),
                 Tables\Columns\TextColumn::make('end_time')

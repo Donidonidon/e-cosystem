@@ -20,6 +20,8 @@ class Presensi extends Component
 
     public $isWfa = false;
     public $deskripsi = '';
+    public $kantorID;
+    public $kantorName = '';
 
     public function render()
     {
@@ -28,7 +30,6 @@ class Presensi extends Component
         $kantorTugasID = $schedule->kantor->id; //ID kantor tugas
         // $kantorTugas = $schedule->kantor; //kantor tugas
         $kantor = Kantor::where('id', '!=', $kantorTugasID)->get(); //selain kantor tugas
-        dd($kantor);
 
         $attendance = Attendence::where('user_id', Auth::user()->id)
             ->whereDate('created_at', date('Y-m-d'))
@@ -40,7 +41,9 @@ class Presensi extends Component
             'insideRadius' => $this->insideRadius,
             'attendance' => $attendance,
             'is_wfa' => $this->isWfa,
-            'deskripsi' => $this->deskripsi
+            'deskripsi' => $this->deskripsi,
+            'kantor_id' => $this->kantorID,
+            'kantor_name' => $this->kantorName
         ]);
     }
 
@@ -50,6 +53,7 @@ class Presensi extends Component
         $this->validate([
             'latitude' => 'required',
             'longitude' => 'required',
+            'kantorID' => 'required',
         ]);
 
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
@@ -70,7 +74,8 @@ class Presensi extends Component
                     'start_longitude' => $this->longitude,
                     'start_time' => Carbon::now('Asia/Jakarta')->toTimeString(),
                     'is_wfa' => $this->isWfa,
-                    'deskripsi' => $this->deskripsi
+                    'deskripsi' => $this->deskripsi,
+                    'kantor_id' => $this->kantorID
                 ]);
             } else {
                 $timeNow = Carbon::now('Asia/Jakarta');

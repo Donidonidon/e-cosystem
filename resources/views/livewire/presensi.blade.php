@@ -6,7 +6,7 @@
                     <h2 class="text-2xl font-bold mb-2">Informasi Pegawai</h2>
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <p><strong>Nama Pegawai : </strong> {{ Auth::user()->name }}</p>
-                        <p><strong>Kantor : </strong>{{ $schedule->kantor->name }}</p>
+                        <p id="demo"><strong>Kantor : </strong>{{ $kantorName }}</p>
                         <p><strong>Shift : </strong>{{ $schedule->shift->name }} ({{ $schedule->shift->start_time }} -
                             {{ $schedule->shift->end_time }}) wib</p>
                         @if ($schedule->is_wfa)
@@ -135,7 +135,8 @@
 
                         if (isWithinRadius(lat, lng, kantorLatLng, radius)) {
                             isInsideAnyCircle = true;
-                            kantorName = kantor.nama; // Simpan nama kantor
+                            kantorName = kantor.name; // Simpan nama kantor
+                            kantorID = kantor.id; // Simpan nama kantor
                         }
                     });
 
@@ -143,6 +144,8 @@
                         component.set('insideRadius', true);
                         component.set('latitude', lat);
                         component.set('longitude', lng);
+                        component.set('kantorID', kantorID);
+                        component.set('kantorName', kantorName);
                     } else {
                         component.set('insideRadius', false);
                         alert('Anda berada di luar radius kantor.');
