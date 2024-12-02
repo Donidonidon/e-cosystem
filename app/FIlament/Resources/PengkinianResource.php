@@ -45,12 +45,6 @@ class PengkinianResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('users_id')
-                    ->label('ID User')
-                    ->columnSpanFull()
-                    ->default(Auth::user()->id)
-                    ->disabled()
-                    ->dehydrated(fn($state) => Auth::user()->id),
                 TextInput::make('first_name')
                     ->label('Nama Depan')
                     ->required(),
@@ -188,7 +182,7 @@ class PengkinianResource extends Resource
             ->modifyQueryUsing(function (Builder $query) {
                 $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
                 if (!$is_super_admin) {
-                    $query->where('users_id', Auth::user()->id);
+                    $query->where('user_id', Auth::user()->id);
                 }
             })
             ->columns([
