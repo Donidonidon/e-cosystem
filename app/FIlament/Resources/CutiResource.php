@@ -7,7 +7,9 @@ use App\Models\Cuti;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Livewire\ExportCutiPdf;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CutiResource\Pages;
@@ -18,7 +20,13 @@ class CutiResource extends Resource
 {
     protected static ?string $model = Cuti::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-arrow-up';
+
+    protected static ?string $label = 'Permohonan Cuti'; // Nama tunggal
+    protected static ?string $pluralLabel = 'Permohonan Cuti'; // Nama jamak
+
+    protected static ?int $navigationSort = 4;
+    public static ?string $navigationGroup = 'Absensi & Cuti';
 
     public static function form(Form $form): Form
     {
@@ -85,6 +93,7 @@ class CutiResource extends Resource
                     ->boolean(),
                 Tables\Columns\IconColumn::make('approved_by_direksi')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('notes'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
@@ -102,6 +111,10 @@ class CutiResource extends Resource
                 //
             ])
             ->actions([
+                Action::make('export')
+                    ->icon('heroicon-m-arrow-down-tray')
+                    ->url(fn(Cuti $record): string => route('cuti.export-pdf', $record))
+                    ->openUrlInNewTab(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

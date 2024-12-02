@@ -20,6 +20,12 @@ class AttendenceResource extends Resource
     protected static ?string $model = Attendence::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $label = 'Absensi'; // Nama tunggal
+    protected static ?string $pluralLabel = 'Absensi'; // Nama jamak
+
+    protected static ?int $navigationSort = 3;
+
+    public static ?string $navigationGroup = 'Absensi & Cuti';
 
     public static function form(Form $form): Form
     {
