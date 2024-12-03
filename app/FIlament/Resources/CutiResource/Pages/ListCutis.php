@@ -5,6 +5,8 @@ namespace App\Filament\Resources\CutiResource\Pages;
 use App\Filament\Resources\CutiResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Components\Tab;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListCutis extends ListRecords
 {
@@ -14,6 +16,17 @@ class ListCutis extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+        ];
+    }
+
+    public function getTabs(): array
+    {
+        return [
+            'all' => Tab::make(),
+            'pending' => Tab::make()
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'pending')),
+            'approved' => Tab::make()
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'approved')),
         ];
     }
 }

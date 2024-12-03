@@ -69,7 +69,8 @@ class AttendenceResource extends Resource
         return $table
             ->modifyQueryUsing(function (Builder $query) {
                 $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
-                if (!$is_super_admin) {
+                $is_acc = Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader']);
+                if (!$is_super_admin && !$is_acc) {
                     $query->where('user_id', Auth::user()->id);
                 }
             })
