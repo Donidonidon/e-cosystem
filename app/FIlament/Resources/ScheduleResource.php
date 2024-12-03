@@ -62,12 +62,10 @@ class ScheduleResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('is_wfa')
-                    ->label('WFA')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('shift.name')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->description(fn($record) => $record->shift->start_time . ' - ' . $record->shift->end_time),
                 Tables\Columns\TextColumn::make('kantor.name')
                     ->numeric()
                     ->sortable(),

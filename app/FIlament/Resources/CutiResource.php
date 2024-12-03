@@ -88,12 +88,16 @@ class CutiResource extends Resource
                         'pending' => 'warning',
                     }),
                 Tables\Columns\IconColumn::make('approved_by_hrd')
+                    ->label('HRD')
                     ->boolean(),
                 Tables\Columns\IconColumn::make('approved_by_leader')
+                    ->label('Leader')
                     ->boolean(),
                 Tables\Columns\IconColumn::make('approved_by_direksi')
+                    ->label('Direksi')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('notes'),
+                Tables\Columns\TextColumn::make('notes')
+                    ->label('Catatan'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
@@ -108,7 +112,11 @@ class CutiResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('Jabatan')
+                    ->relationship('user.profile.jabatan', 'name')
+                    ->label('Jabatan')
+                    ->searchable()
+                    ->preload(),
             ])
             ->actions([
                 Action::make('export')

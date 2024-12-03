@@ -8,12 +8,15 @@ use Filament\Forms\Form;
 use App\Models\Attendence;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use App\Exports\AttendenceExport;
+use Filament\Tables\Filters\Filter;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AttendenceResource\Pages;
 use App\Filament\Resources\AttendenceResource\RelationManagers;
-use Filament\Tables\Filters\Filter;
+use Filament\Tables\Actions\Action;
 
 class AttendenceResource extends Resource
 {
@@ -133,6 +136,22 @@ class AttendenceResource extends Resource
                     })
             ])
             ->actions([
+                Action::make('Export Attendence')
+                    ->icon('heroicon-o-printer')
+                    ->form([
+                        Forms\Components\DatePicker::make('start_date')
+                            ->label('Tanggal Mulai')
+                            ->required(),
+                        Forms\Components\DatePicker::make('end_date')
+                            ->label('Tanggal Akhir')
+                            ->required(),
+                    ])
+                    ->action(function (array $data) {
+                        $startDate = $data['start_date'];
+                        $endDate = $data['end_date'];
+
+                        return Excel::download(new AttendenceExport($startDate, $endDate), 'attendence.xlsx');
+                    }),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
