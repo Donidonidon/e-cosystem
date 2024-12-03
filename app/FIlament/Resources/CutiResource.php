@@ -40,17 +40,41 @@ class CutiResource extends Resource
                     Forms\Components\Textarea::make('reason')
                         ->required()
                         ->columnSpanFull(),
-                ])
+                ])->disabled(fn() => Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader'])),
         ];
 
-        if (Auth::user()->hasRole('super_admin') || Auth::user()->hasRole('acc_cuti')) {
+        if (Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader'])) {
             array_push($schema, Forms\Components\Section::make('Approval')
                 ->schema([
-                    Forms\Components\Toggle::make('approved_by_hrd'),
-                    Forms\Components\Toggle::make('approved_by_leader'),
-                    Forms\Components\Toggle::make('approved_by_direksi'),
+                    Forms\Components\Group::make()
+                        ->schema([
+                            Forms\Components\Toggle::make('approved_by_leader')
+                                ->label('Leader')
+                                ->onColor('success')
+                                ->reactive()
+                                ->disabled(fn() => !Auth::user()->hasRole('leader')), // Aktif jika user adalah Leader
+                            Forms\Components\Toggle::make('approved_by_direksi')
+                                ->label('Direksi')
+                                ->onColor('success')
+                                ->hint(
+                                    'Approval dari Leader diperlukan sebelum disetujui oleh Direksi.' // Tooltip
+                                )
+                                ->reactive()
+                                ->disabled(fn(callable $get) => !$get('approved_by_leader') || !Auth::user()->hasRole('direksi')), // Aktif jika Leader sudah approve dan user adalah Direksi
+                            Forms\Components\Toggle::make('approved_by_hrd')
+                                ->label('HRD')
+                                ->onColor('success')
+                                ->hint(
+                                    'Approval dari Direksi diperlukan sebelum disetujui oleh HRD.' // Tooltip
+                                )
+                                ->reactive()
+                                ->disabled(fn(callable $get) => !$get('approved_by_direksi') || !Auth::user()->hasRole('hrd')), // Aktif jika Leader sudah approve dan user adalah Direksi
+                        ])->columns(3),
                     Forms\Components\Textarea::make('notes')
-                        ->columnSpanFull(),
+                        ->label('Catatan')
+                        ->default('notes')
+                        ->columnSpanFull()
+                        ->disabled(fn() => !Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader'])), // Hanya Super Admin atau ACC Cuti yang bisa edit
                 ]));
         }
 
@@ -61,9 +85,9 @@ class CutiResource extends Resource
     {
         return $table
             ->modifyQueryUsing(function (Builder $query) {
-                $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
-                $is_acc = Auth::user()->hasRole('acc_cuti'); //emang merah error tapi works
-                if (!$is_super_admin && !$is_acc) {
+                // $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
+                $is_acc = Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader']); //emang merah error tapi works
+                if (!$is_acc) {
                     $query->where('user_id', Auth::user()->id);
                 }
             })
@@ -119,10 +143,11 @@ class CutiResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Action::make('export')
+                Action::make('cetak')
                     ->icon('heroicon-m-arrow-down-tray')
                     ->url(fn(Cuti $record): string => route('cuti.export-pdf', $record))
-                    ->openUrlInNewTab(),
+                    ->openUrlInNewTab()
+                    ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected' && !Auth::user()->hasRole('hrd')),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

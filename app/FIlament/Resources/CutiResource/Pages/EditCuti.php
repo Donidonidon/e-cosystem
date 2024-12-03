@@ -12,7 +12,7 @@ class EditCuti extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        if ($data['approved_by_hrd'] == true && $data['approved_by_leader'] == true && $data['approved_by_direksi'] == true) {
+        if ($data['approved_by_hrd'] == true) {
             $data['status'] = 'approved';
         }
 
