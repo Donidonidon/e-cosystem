@@ -859,9 +859,9 @@ mso-ansi-language:SV'>&nbsp;</span></b>
                 <span class=SpellE>bertanda</span> <span class=SpellE>tangan</span> <span class=SpellE>dibawah</span>
                 <span class=SpellE>ini</span>,</span></p>
 
-        <p class=MsoNormal><span
-                style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'>Nama&nbsp;
+        <p class=MsoNormal><span style='font-size:12.0pt;line-height:106%;font-family:
+"Calibri",sans-serif'>Nama
+                &nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=GramE>&nbsp;
                     :</span> {{ $cuti->user->name }}</span></p>
 
@@ -1016,7 +1016,7 @@ mso-ansi-language:SV'>&nbsp;</span></b>
                         <span lang=SV
                             style='font-size:12.0pt;font-family:"Calibri",sans-serif;
   mso-ansi-language:SV'>
-                            {{ $cuti->user->name }}</span>
+                            ({{ $cuti->user->name }})</span>
                     </p>
                 </td>
                 <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
