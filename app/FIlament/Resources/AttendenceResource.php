@@ -136,22 +136,6 @@ class AttendenceResource extends Resource
                     })
             ])
             ->actions([
-                Action::make('Export Attendence')
-                    ->icon('heroicon-o-printer')
-                    ->form([
-                        Forms\Components\DatePicker::make('start_date')
-                            ->label('Tanggal Mulai')
-                            ->required(),
-                        Forms\Components\DatePicker::make('end_date')
-                            ->label('Tanggal Akhir')
-                            ->required(),
-                    ])
-                    ->action(function (array $data) {
-                        $startDate = $data['start_date'];
-                        $endDate = $data['end_date'];
-
-                        return Excel::download(new AttendenceExport($startDate, $endDate), 'attendence.xlsx');
-                    }),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
