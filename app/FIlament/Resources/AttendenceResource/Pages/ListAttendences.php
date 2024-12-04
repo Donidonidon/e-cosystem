@@ -20,16 +20,14 @@ class ListAttendences extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        $is_admin = Auth::user()->hasRole('super_admin');
-        $export_presensi = Action::make('Export Data')->label('Export Data')->icon('heroicon-o-printer')
-            ->url(route('attendence-export'))
-            ->color('info');
+        $is_admin = Auth::user()->hasAnyRole(['super_admin', 'hrd']);
         $presensi = Action::make('Presensi')->label('Presensi')->icon('heroicon-s-plus')
             ->url(route('presensi'))
             ->color('success');
 
-        $coba = Action::make('Export Attendence')
+        $export = Action::make('Export Attendence')
             ->icon('heroicon-o-printer')
+            ->color('info')
             ->form([
                 Forms\Components\DatePicker::make('start_date')
                     ->label('Tanggal Mulai')
@@ -42,11 +40,11 @@ class ListAttendences extends ListRecords
                 $startDate = $data['start_date'];
                 $endDate = $data['end_date'];
 
-                return Excel::download(new AttendenceExport($startDate, $endDate), 'attendence.xlsx');
+                return Excel::download(new AttendenceExport($startDate, $endDate), $startDate . ' hingga ' . $endDate . ' Presensi.xlsx');
             });
 
         if ($is_admin) {
-            return [$coba, $presensi];
+            return [$export, $presensi];
         }
         return [$presensi];
     }

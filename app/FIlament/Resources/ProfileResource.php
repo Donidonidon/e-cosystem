@@ -2,17 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use DateTime;
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Divisi;
 use App\Models\Jabatan;
 use App\Models\Profile;
+use Filament\Infolists;
 use Filament\Forms\Form;
-use App\Models\Pengkinian;
 use Filament\Tables\Table;
 use Filament\Support\RawJs;
-use Faker\Provider\ar_EG\Text;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -20,23 +18,27 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Forms\Components\TextInput\Mask;
+use Filament\Infolists\Components\Fieldset;
+use Filament\Infolists\Components\ImageEntry;
+use Teguh02\IndonesiaTerritoryForms\Models\City;
+use App\Filament\Resources\ProfileResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PengkinianResource\Pages;
+use Teguh02\IndonesiaTerritoryForms\Models\District;
 use Teguh02\IndonesiaTerritoryForms\Models\Province;
-use Teguh02\IndonesiaTerritoryForms\IndonesiaTerritoryForms;
-use App\Filament\Resources\PengkinianResource\RelationManagers;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class PengkinianResource extends Resource
+use Teguh02\IndonesiaTerritoryForms\Models\SubDistrict;
+use Saade\FilamentAutograph\Forms\Components\SignaturePad;
+use App\Filament\Resources\ProfileResource\RelationManagers;
+use Teguh02\IndonesiaTerritoryForms\IndonesiaTerritoryForms;
+
+class ProfileResource extends Resource
 {
     protected static ?string $model = Profile::class;
-
-    protected static ?string $slug = 'pengkinian';
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
     protected static ?int $navigationSort = 1;
@@ -60,8 +62,8 @@ class PengkinianResource extends Resource
                 TextInput::make('nik')
                     ->label('NIK / Nomor Induk Kependudukan')
                     ->mask(RawJs::make(<<<'JS'
-                            '9999 9999 9999 9999'
-                        JS))
+                        '9999 9999 9999 9999'
+                    JS))
                     ->maxLength(19) // Panjang maksimal dengan spasi (16 angka + 3 spasi)
                     ->placeholder('0000 0000 0000 0000')
                     ->unique(ignoreRecord: true)
@@ -69,8 +71,8 @@ class PengkinianResource extends Resource
                 TextInput::make('no_hp')
                     ->suffixIcon('heroicon-s-phone')
                     ->mask(RawJs::make(<<<'JS'
-                            '6299999999999'
-                        JS))
+                        '6299999999999'
+                    JS))
                     ->prefix('+62')
                     ->label('Nomor Handphone')
                     ->tel()
@@ -172,7 +174,17 @@ class PengkinianResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
                     ->columnSpanFull()
                     ->storeFileNamesIn(Auth::user()->name . '-Foto-Ktp')
-                    ->required()
+                    ->required(),
+
+                SignaturePad::make('signature')
+                    ->label(__('Tanda Tangan'))
+                    ->dotSize(2.0)
+                    ->lineMinWidth(0.5)
+                    ->lineMaxWidth(2.5)
+                    ->throttle(16)
+                    ->minDistance(5)
+                    ->velocityFilterWeight(0.7)
+                    ->required(),
             ]);
     }
 
@@ -203,6 +215,7 @@ class PengkinianResource extends Resource
                     ->relationship('jabatan', 'name'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -219,12 +232,76 @@ class PengkinianResource extends Resource
         ];
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Fieldset::make('Profile')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('nik'),
+                        Infolists\Components\TextEntry::make('first_name'),
+                        Infolists\Components\TextEntry::make('last_name'),
+                        Infolists\Components\TextEntry::make('email'),
+                        Infolists\Components\TextEntry::make('no_hp'),
+                        Infolists\Components\TextEntry::make('tempat_lahir'),
+                        Infolists\Components\TextEntry::make('tanggal_lahir'),
+                        Infolists\Components\TextEntry::make('jenis_kelamin'),
+                        Infolists\Components\TextEntry::make('agama')
+                    ])
+                    ->columns([
+                        'sm' => 3,
+                        'xl' => 4,
+                        '2xl' => 5,
+                    ]),
+
+                Fieldset::make('Alamat')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('alamat')
+                            ->columnSpan(2),
+                        Infolists\Components\TextEntry::make('subdistrict_id')
+                            ->formatStateUsing(fn($state) => collect(app(SubDistrict::class)->getSubdistrictNameById($state))->first()),
+                        Infolists\Components\TextEntry::make('district_id')
+                            ->formatStateUsing(fn($state) => collect(app(District::class)->getDistrictNameById($state))->first()),
+                        Infolists\Components\TextEntry::make('city_id')
+                            ->formatStateUsing(fn($state) => collect(app(City::class)->getCityNameById($state))->first()),
+                        Infolists\Components\TextEntry::make('province_id')
+                            ->formatStateUsing(fn($state) => collect(app(Province::class)->getProvinceNameById($state))->first()),
+                    ])
+                    ->columns([
+                        'sm' => 2,
+                        'xl' => 4,
+                        '2xl' => 5,
+                    ]),
+
+                Fieldset::make('Profile Kantor')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('divisi.name'),
+                        Infolists\Components\TextEntry::make('jabatan.name'),
+                        Infolists\Components\TextEntry::make('tanggal_masuk'),
+                        Infolists\Components\TextEntry::make('kantor.name'),
+                    ])
+                    ->columns([
+                        'sm' => 2,
+                        'xl' => 4,
+                        '2xl' => 5,
+                    ]),
+
+                Infolists\Components\Section::make('Media')
+                    ->collapsible()
+                    ->schema([
+                        Infolists\Components\ImageEntry::make('foto_ktp'),
+                        Infolists\Components\ImageEntry::make('signature'),
+                    ]),
+            ]);
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPengkinians::route('/'),
-            'create' => Pages\CreatePengkinian::route('/create'),
-            'edit' => Pages\EditPengkinian::route('/{record}/edit'),
+            'index' => Pages\ListProfiles::route('/'),
+            'create' => Pages\CreateProfile::route('/create'),
+            'view' => Pages\ViewProfile::route('/{record}'),
+            'edit' => Pages\EditProfile::route('/{record}/edit'),
         ];
     }
 }

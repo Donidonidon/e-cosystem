@@ -22,7 +22,7 @@ class KantorResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?int $navigationSort = 6;
 
-    public static ?string $navigationGroup = 'Office Management';
+    public static ?string $navigationGroup = 'Absensi & Cuti';
 
     public static function form(Form $form): Form
     {

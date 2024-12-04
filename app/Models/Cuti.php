@@ -19,6 +19,9 @@ class Cuti extends Model
         'approved_by_leader',
         'approved_by_direksi',
         'notes',
+        'approval_by_hrd_id',
+        'approval_by_direksi_id',
+
     ];
 
     public function user()

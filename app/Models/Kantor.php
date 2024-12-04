@@ -18,8 +18,8 @@ class Kantor extends Model
         'radius'
     ];
 
-    public function profile(): BelongsTo
+    public function profile()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 }

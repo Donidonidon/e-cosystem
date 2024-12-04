@@ -38,6 +38,7 @@ class Profile extends Model
         'tanggal_masuk',
         'kantor_id',
         'foto_ktp',
+        'signature'
     ];
 
     public function user()
@@ -57,9 +58,9 @@ class Profile extends Model
         return $this->belongsTo(Jabatan::class);
     }
 
-    public function kantor(): HasOne
+    public function kantor()
     {
-        return $this->hasOne(Kantor::class);
+        return $this->belongsTo(Kantor::class);
     }
 
     protected static function booted()

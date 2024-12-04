@@ -977,6 +977,7 @@ mso-ansi-language:SV'>&nbsp;</span></b>
                             style='font-size:12.0pt;font-family:"Calibri",sans-serif;
   mso-ansi-language:SV'>Dirut</span>
                     </p>
+                    {{-- <img src="{{ $signatureHrd }}" alt=""> --}}
                 </td>
             </tr>
             <tr style='mso-yfti-irow:2;height:45.85pt'>
@@ -1034,7 +1035,7 @@ mso-ansi-language:SV'>&nbsp;</span></b>
   line-height:normal'>
                         <span lang=SV
                             style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>__________</span>
+  mso-ansi-language:SV'>________</span>
                     </p>
                 </td>
             </tr>

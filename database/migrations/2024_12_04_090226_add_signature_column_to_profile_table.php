@@ -9,17 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->string('email')->nullable()->change();
+            $table->text('signature')->nullable();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->string('email')->nullable(false)->change();
+            $table->dropColumn('signature');
         });
     }
 };

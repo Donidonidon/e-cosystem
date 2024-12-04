@@ -8,6 +8,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Livewire\ExportCutiPdf;
+use Filament\Forms\Components\View;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Auth;
@@ -53,22 +54,23 @@ class CutiResource extends Resource
                                 ->onColor('success')
                                 ->reactive()
                                 ->disabled(fn() => !Auth::user()->hasRole('leader')), // Aktif jika user adalah Leader
-                            Forms\Components\Toggle::make('approved_by_direksi')
-                                ->label('Direksi')
-                                ->onColor('success')
-                                ->hint(
-                                    'Approval dari Leader diperlukan sebelum disetujui oleh Direksi.' // Tooltip
-                                )
-                                ->reactive()
-                                ->disabled(fn(callable $get) => !$get('approved_by_leader') || !Auth::user()->hasRole('direksi')), // Aktif jika Leader sudah approve dan user adalah Direksi
                             Forms\Components\Toggle::make('approved_by_hrd')
                                 ->label('HRD')
                                 ->onColor('success')
                                 ->hint(
-                                    'Approval dari Direksi diperlukan sebelum disetujui oleh HRD.' // Tooltip
+                                    'Approval dari Leader diperlukan sebelum disetujui oleh HRD.' // Tooltip
                                 )
                                 ->reactive()
-                                ->disabled(fn(callable $get) => !$get('approved_by_direksi') || !Auth::user()->hasRole('hrd')), // Aktif jika Leader sudah approve dan user adalah Direksi
+                                ->disabled(fn(callable $get) => !$get('approved_by_leader') || !Auth::user()->hasRole('hrd')), // Aktif jika Leader sudah approve dan user adalah Direksi
+
+                            Forms\Components\Toggle::make('approved_by_direksi')
+                                ->label('Direksi')
+                                ->onColor('success')
+                                ->hint(
+                                    'Approval dari HRD diperlukan sebelum disetujui oleh Direksi.' // Tooltip
+                                )
+                                ->reactive()
+                                ->disabled(fn(callable $get) => !$get('approved_by_hrd') || !Auth::user()->hasRole('direksi')), // Aktif jika Leader sudah approve dan user adalah Direksi
                         ])->columns(3),
                     Forms\Components\Textarea::make('notes')
                         ->label('Catatan')
@@ -86,7 +88,7 @@ class CutiResource extends Resource
         return $table
             ->modifyQueryUsing(function (Builder $query) {
                 // $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
-                $is_acc = Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader']); //emang merah error tapi works
+                $is_acc = Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader', 'super_admin']); //emang merah error tapi works
                 if (!$is_acc) {
                     $query->where('user_id', Auth::user()->id);
                 }
@@ -111,11 +113,11 @@ class CutiResource extends Resource
                         'rejected' => 'danger',
                         'pending' => 'warning',
                     }),
-                Tables\Columns\IconColumn::make('approved_by_hrd')
-                    ->label('HRD')
-                    ->boolean(),
                 Tables\Columns\IconColumn::make('approved_by_leader')
                     ->label('Leader')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('approved_by_hrd')
+                    ->label('HRD')
                     ->boolean(),
                 Tables\Columns\IconColumn::make('approved_by_direksi')
                     ->label('Direksi')
@@ -147,7 +149,7 @@ class CutiResource extends Resource
                     ->icon('heroicon-m-arrow-down-tray')
                     ->url(fn(Cuti $record): string => route('cuti.export-pdf', $record))
                     ->openUrlInNewTab()
-                    ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected' && !Auth::user()->hasRole('hrd')),
+                    ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
