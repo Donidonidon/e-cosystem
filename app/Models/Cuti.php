@@ -21,8 +21,33 @@ class Cuti extends Model
         'notes',
         'approval_by_hrd_id',
         'approval_by_direksi_id',
+        'jumlah_hari',
+        'path_cuti_pdf',
+        'approval_by_leader_id',
 
     ];
+
+    protected static function booted()
+    {
+        // Event untuk mendeteksi perubahan data pada cuti
+        static::updated(function (Cuti $cuti) {
+            // Jika status berubah menjadi approved
+            if ($cuti->status === 'approved') {
+                $user = User::find($cuti->user_id); // Ambil data user dari user_id
+                if ($user) {
+                    // Kurangi jatah cuti user
+                    $user->jatah_cuti -= 1;
+
+                    // Pastikan jatah cuti tidak negatif
+                    if ($user->jatah_cuti < 0) {
+                        $user->jatah_cuti = 0;
+                    }
+
+                    $user->save(); // Simpan perubahan
+                }
+            }
+        });
+    }
 
     public function user()
     {

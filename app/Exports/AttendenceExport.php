@@ -32,7 +32,7 @@ class AttendenceExport implements FromQuery, WithHeadings
             ->join('schedules', 'attendences.user_id', '=', 'schedules.user_id')
             ->join('shifts', 'schedules.shift_id', '=', 'shifts.id')
             ->select([
-                'attendences.created_at as tanggal',
+                DB::raw('DATE_FORMAT(attendences.created_at, "%d-%m-%Y") as tanggal'),
                 'users.name as nama',
                 'kantors.name as nama_kantor',
                 'attendences.start_time',

@@ -5,17 +5,22 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use App\Models\Cuti;
 use Filament\Tables;
+use Filament\Infolists;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Carbon;
 use App\Livewire\ExportCutiPdf;
-use Filament\Forms\Components\View;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\View;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CutiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CutiResource\RelationManagers;
+use Joaopaulolndev\FilamentPdfViewer\Infolists\Components\PdfViewerEntry;
 
 class CutiResource extends Resource
 {
@@ -35,8 +40,10 @@ class CutiResource extends Resource
             Forms\Components\Section::make('FormCuti')
                 ->schema([
                     Forms\Components\DatePicker::make('start_date')
-                        ->required(),
+                        ->required()
+                        ->label('Start Date'),
                     Forms\Components\DatePicker::make('end_date')
+                        ->label('End Date')
                         ->required(),
                     Forms\Components\Textarea::make('reason')
                         ->required()
@@ -57,20 +64,20 @@ class CutiResource extends Resource
                             Forms\Components\Toggle::make('approved_by_hrd')
                                 ->label('HRD')
                                 ->onColor('success')
-                                ->hint(
+                                ->helperText(
                                     'Approval dari Leader diperlukan sebelum disetujui oleh HRD.' // Tooltip
                                 )
                                 ->reactive()
-                                ->disabled(fn(callable $get) => !$get('approved_by_leader') || !Auth::user()->hasRole('hrd')), // Aktif jika Leader sudah approve dan user adalah Direksi
+                                ->disabled(fn($get) => !$get('approved_by_leader') || !Auth::user()->hasRole('hrd')), // Aktif jika Leader sudah approve dan user adalah Direksi
 
                             Forms\Components\Toggle::make('approved_by_direksi')
                                 ->label('Direksi')
                                 ->onColor('success')
-                                ->hint(
+                                ->helperText(
                                     'Approval dari HRD diperlukan sebelum disetujui oleh Direksi.' // Tooltip
                                 )
                                 ->reactive()
-                                ->disabled(fn(callable $get) => !$get('approved_by_hrd') || !Auth::user()->hasRole('direksi')), // Aktif jika Leader sudah approve dan user adalah Direksi
+                                ->disabled(fn($get) => !$get('approved_by_hrd') || !Auth::user()->hasRole('direksi')) // Aktif jika Leader sudah approve dan user adalah Direksi
                         ])->columns(3),
                     Forms\Components\Textarea::make('notes')
                         ->label('Catatan')
@@ -95,11 +102,15 @@ class CutiResource extends Resource
             })
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                    ->label('Nama')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.profile.jabatan.name')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('jumlah_hari')
+                    ->numeric()
+                    ->alignCenter(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()
                     ->sortable(),
@@ -108,6 +119,7 @@ class CutiResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
+                    ->alignCenter()
                     ->color(fn(string $state): string => match ($state) {
                         'approved' => 'success',
                         'rejected' => 'danger',
@@ -115,12 +127,15 @@ class CutiResource extends Resource
                     }),
                 Tables\Columns\IconColumn::make('approved_by_leader')
                     ->label('Leader')
-                    ->boolean(),
+                    ->boolean()
+                    ->alignCenter(),
                 Tables\Columns\IconColumn::make('approved_by_hrd')
                     ->label('HRD')
+                    ->alignCenter()
                     ->boolean(),
                 Tables\Columns\IconColumn::make('approved_by_direksi')
                     ->label('Direksi')
+                    ->alignCenter()
                     ->boolean(),
                 Tables\Columns\TextColumn::make('notes')
                     ->label('Catatan'),
@@ -145,8 +160,11 @@ class CutiResource extends Resource
                     ->preload(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
                 Action::make('cetak')
-                    ->icon('heroicon-m-arrow-down-tray')
+                    ->icon('heroicon-o-printer')
+                    ->color('success')
                     ->url(fn(Cuti $record): string => route('cuti.export-pdf', $record))
                     ->openUrlInNewTab()
                     ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
@@ -166,11 +184,23 @@ class CutiResource extends Resource
         ];
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                PdfViewerEntry::make('path_cuti_pdf')
+                    ->label('')
+                    ->minHeight('80svh')
+                    ->columnSpanFull()
+            ]);
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListCutis::route('/'),
             'create' => Pages\CreateCuti::route('/create'),
+            'view' => Pages\ViewCuti::route('/{record}'),
             'edit' => Pages\EditCuti::route('/{record}/edit'),
         ];
     }

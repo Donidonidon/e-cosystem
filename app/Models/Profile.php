@@ -38,7 +38,8 @@ class Profile extends Model
         'tanggal_masuk',
         'kantor_id',
         'foto_ktp',
-        'signature'
+        'signature',
+        'profile_pic'
     ];
 
     public function user()

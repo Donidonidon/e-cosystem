@@ -16,9 +16,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('attendence/export', function () {
         return Excel::download(new AttendenceExport, 'attendence.xlsx');
     })->name('attendence-export');
-});
 
-Route::get('/cuti/{cuti}/export-pdf', [ExportCutiController::class, 'exportPdf'])->name('cuti.export-pdf');
+    Route::get('/cuti/{cuti}/export-pdf', [ExportCutiController::class, 'exportPdf'])->name('cuti.export-pdf');
+});
 
 Route::get('/login', function () {
     return redirect('/internal/login');

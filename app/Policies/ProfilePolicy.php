@@ -18,7 +18,7 @@ class ProfilePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_pengkinian');
+        return $user->can('view_any_profile');
     }
 
     /**
@@ -30,7 +30,7 @@ class ProfilePolicy
      */
     public function view(User $user, Profile $profile): bool
     {
-        return $user->can('view_pengkinian');
+        return $user->can('view_profile');
     }
 
     /**
@@ -41,7 +41,7 @@ class ProfilePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_pengkinian');
+        return $user->can('create_profile');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProfilePolicy
      */
     public function update(User $user, Profile $profile): bool
     {
-        return $user->can('update_pengkinian');
+        return $user->can('update_profile');
     }
 
     /**
@@ -65,7 +65,7 @@ class ProfilePolicy
      */
     public function delete(User $user, Profile $profile): bool
     {
-        return $user->can('delete_pengkinian');
+        return $user->can('delete_profile');
     }
 
     /**
@@ -76,7 +76,7 @@ class ProfilePolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_pengkinian');
+        return $user->can('delete_any_profile');
     }
 
     /**
@@ -88,7 +88,7 @@ class ProfilePolicy
      */
     public function forceDelete(User $user, Profile $profile): bool
     {
-        return $user->can('force_delete_pengkinian');
+        return $user->can('force_delete_profile');
     }
 
     /**
@@ -99,7 +99,7 @@ class ProfilePolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_pengkinian');
+        return $user->can('force_delete_any_profile');
     }
 
     /**
@@ -111,7 +111,7 @@ class ProfilePolicy
      */
     public function restore(User $user, Profile $profile): bool
     {
-        return $user->can('restore_pengkinian');
+        return $user->can('restore_profile');
     }
 
     /**
@@ -122,7 +122,7 @@ class ProfilePolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_pengkinian');
+        return $user->can('restore_any_profile');
     }
 
     /**
@@ -134,7 +134,7 @@ class ProfilePolicy
      */
     public function replicate(User $user, Profile $profile): bool
     {
-        return $user->can('replicate_pengkinian');
+        return $user->can('replicate_profile');
     }
 
     /**
@@ -145,7 +145,7 @@ class ProfilePolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_pengkinian');
+        return $user->can('reorder_profile');
     }
 
 }

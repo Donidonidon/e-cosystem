@@ -24,6 +24,9 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Infolists\Components\Fieldset;
+use Filament\Infolists\Components\Split;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Support\Enums\FontWeight;
 use Filament\Infolists\Components\ImageEntry;
 use Teguh02\IndonesiaTerritoryForms\Models\City;
 use App\Filament\Resources\ProfileResource\Pages;
@@ -47,61 +50,75 @@ class ProfileResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('first_name')
-                    ->label('Nama Depan')
-                    ->required(),
-                TextInput::make('last_name')
-                    ->label('Nama Belakang')
-                    ->required(),
-                TextInput::make('email')
-                    ->suffixIcon('heroicon-s-envelope')
-                    // ->email()
-                    ->disabled()
-                    ->default(Auth::user()->email)
-                    ->dehydrated(fn($state) => Auth::user()->email),
-                TextInput::make('nik')
-                    ->label('NIK / Nomor Induk Kependudukan')
-                    ->mask(RawJs::make(<<<'JS'
+                Section::make('Informasi Pribadi')
+                    ->schema([
+                        TextInput::make('first_name')
+                            ->label('Nama Depan')
+                            ->required(),
+                        TextInput::make('last_name')
+                            ->label('Nama Belakang')
+                            ->required(),
+                        TextInput::make('email')
+                            ->suffixIcon('heroicon-s-envelope')
+                            // ->email()
+                            ->disabled()
+                            ->default(Auth::user()->email)
+                            ->dehydrated(fn($state) => Auth::user()->email),
+                        TextInput::make('nik')
+                            ->label('NIK / Nomor Induk Kependudukan')
+                            ->mask(RawJs::make(<<<'JS'
                         '9999 9999 9999 9999'
                     JS))
-                    ->maxLength(19) // Panjang maksimal dengan spasi (16 angka + 3 spasi)
-                    ->placeholder('0000 0000 0000 0000')
-                    ->unique(ignoreRecord: true)
-                    ->required(),
-                TextInput::make('no_hp')
-                    ->suffixIcon('heroicon-s-phone')
-                    ->mask(RawJs::make(<<<'JS'
+                            ->maxLength(19) // Panjang maksimal dengan spasi (16 angka + 3 spasi)
+                            ->placeholder('0000 0000 0000 0000')
+                            ->unique(ignoreRecord: true)
+                            ->required(),
+                        TextInput::make('no_hp')
+                            ->suffixIcon('heroicon-s-phone')
+                            ->mask(RawJs::make(<<<'JS'
                         '6299999999999'
                     JS))
-                    ->prefix('+62')
-                    ->label('Nomor Handphone')
-                    ->tel()
-                    ->required(),
-                TextInput::make('tempat_lahir')
-                    ->label('Tempat Lahir')
-                    ->required(),
-                DatePicker::make('tanggal_lahir')
-                    ->label('Tanggal Lahir')
-                    ->required()
-                    ->maxDate(Date::now()),
-                Select::make('jenis_kelamin')
-                    ->label('Jenis Kelamin')
-                    ->options([
-                        'Laki-laki' => 'Laki-laki',
-                        'Perempuan' => 'Perempuan',
-                    ])
-                    ->required(),
-                Select::make('agama')
-                    ->label('Agama')
-                    ->options([
-                        'Islam' => 'Islam',
-                        'Kristen' => 'Kristen',
-                        'Katolik' => 'Katolik',
-                        'Hindu' => 'Hindu',
-                        'Buddha' => 'Buddha',
-                        'Konghucu' => 'Konghucu',
-                    ])
-                    ->required(),
+                            ->prefix('+62')
+                            ->label('Nomor Handphone')
+                            ->tel()
+                            ->required(),
+                        TextInput::make('tempat_lahir')
+                            ->label('Tempat Lahir')
+                            ->required(),
+                        DatePicker::make('tanggal_lahir')
+                            ->label('Tanggal Lahir')
+                            ->required()
+                            ->maxDate(Date::now()),
+                        Select::make('jenis_kelamin')
+                            ->label('Jenis Kelamin')
+                            ->options([
+                                'Laki-laki' => 'Laki-laki',
+                                'Perempuan' => 'Perempuan',
+                            ])
+                            ->required(),
+                        Select::make('agama')
+                            ->label('Agama')
+                            ->options([
+                                'Islam' => 'Islam',
+                                'Kristen' => 'Kristen',
+                                'Katolik' => 'Katolik',
+                                'Hindu' => 'Hindu',
+                                'Buddha' => 'Buddha',
+                                'Konghucu' => 'Konghucu',
+                            ])
+                            ->required(),
+
+                        FileUpload::make('profile_pic')
+                            ->required()
+                            ->label('Foto Profil')
+                            ->image()
+                            ->maxSize(5120)
+                            ->maxFiles(1)
+                            ->directory('profile')
+                            ->uploadingMessage('Uploading attachment...')
+                            ->columnSpanFull()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
+                    ])->columns(2),
 
                 Section::make('Alamat')
                     ->schema([
@@ -123,68 +140,78 @@ class ProfileResource extends Resource
                         IndonesiaTerritoryForms::sub_district_form()
                             ->label('Kelurahan/Desa')
                             ->required(),
-                    ]),
+                    ])->columns(2),
 
-                Select::make('ijasah_terakhir')
-                    ->label('Ijasah Terakhir')
-                    ->options([
-                        'SD' => 'SD',
-                        'SMP' => 'SMP',
-                        'SMA' => 'SMA',
-                        'S1' => 'S1',
-                        'S2' => 'S2',
-                    ])
-                    ->required(),
-                Select::make('divisi_id')
-                    ->relationship('divisi', 'name', fn($query) => $query->orderBy('id', 'asc'))
-                    ->label('Divisi')
-                    ->required()
-                    ->reactive()
-                    ->afterStateUpdated(function (callable $set) {
-                        $set('jabatan_id', null);
-                    }),
+                Section::make('Profile Kantor')
+                    ->schema([
+                        Select::make('ijasah_terakhir')
+                            ->label('Ijasah Terakhir')
+                            ->options([
+                                'SD' => 'SD',
+                                'SMP' => 'SMP',
+                                'SMA' => 'SMA',
+                                'S1' => 'S1',
+                                'S2' => 'S2',
+                            ])
+                            ->required(),
+                        Select::make('divisi_id')
+                            ->relationship('divisi', 'name', fn($query) => $query->orderBy('id', 'asc'))
+                            ->label('Divisi')
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function (callable $set) {
+                                $set('jabatan_id', null);
+                            }),
 
-                Select::make('jabatan_id')
-                    ->label('Jabatan')
-                    ->options(function (callable $get) {
-                        $divisiId = $get('divisi_id');
-                        return $divisiId
-                            ? Jabatan::where('divisi_id', $divisiId)
-                            ->orderBy('id', 'asc')
-                            ->pluck('name', 'id')
-                            : [];
-                    })
-                    ->disabled(fn(callable $get) => !$get('divisi_id')) // Disable jika divisi belum dipilih
-                    ->required()
-                    ->reactive(),
-                DatePicker::make('tanggal_masuk')
-                    ->label('Tanggal Masuk')
-                    ->required()
-                    ->maxDate(Date::now()),
-                Select::make('kantor_id')
-                    ->label('Kantor')
-                    ->relationship('kantor', 'name')
-                    ->required(),
-                FileUpload::make('foto_ktp')
-                    ->label('Foto KTP')
-                    ->image()
-                    ->maxSize(5120)
-                    ->maxFiles(1)
-                    ->directory('ktp')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
-                    ->columnSpanFull()
-                    ->storeFileNamesIn(Auth::user()->name . '-Foto-Ktp')
-                    ->required(),
+                        Select::make('jabatan_id')
+                            ->label('Jabatan')
+                            ->options(function (callable $get) {
+                                $divisiId = $get('divisi_id');
+                                return $divisiId
+                                    ? Jabatan::where('divisi_id', $divisiId)
+                                    ->orderBy('id', 'asc')
+                                    ->pluck('name', 'id')
+                                    : [];
+                            })
+                            ->disabled(fn(callable $get) => !$get('divisi_id')) // Disable jika divisi belum dipilih
+                            ->required()
+                            ->reactive(),
+                        DatePicker::make('tanggal_masuk')
+                            ->label('Tanggal Masuk')
+                            ->required()
+                            ->maxDate(Date::now()),
+                        Select::make('kantor_id')
+                            ->label('Kantor')
+                            ->relationship('kantor', 'name')
+                            ->required(),
+                    ])->columns(2),
 
-                SignaturePad::make('signature')
-                    ->label(__('Tanda Tangan'))
-                    ->dotSize(2.0)
-                    ->lineMinWidth(0.5)
-                    ->lineMaxWidth(2.5)
-                    ->throttle(16)
-                    ->minDistance(5)
-                    ->velocityFilterWeight(0.7)
-                    ->required(),
+                Section::make('Media')
+                    ->schema([
+                        FileUpload::make('foto_ktp')
+                            ->label('Foto KTP')
+                            ->image()
+                            ->maxSize(5120)
+                            ->maxFiles(1)
+                            ->directory('ktp')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
+                            ->storeFileNamesIn(Auth::user()->name . '-Foto-Ktp')
+                            ->uploadingMessage('Uploading attachment...')
+                            ->required(),
+                        SignaturePad::make('signature')
+                            ->label(__('Tanda Tangan'))
+                            ->dotSize(2.0)
+                            ->lineMinWidth(0.5)
+                            ->lineMaxWidth(2.5)
+                            ->throttle(16)
+                            ->minDistance(5)
+                            ->velocityFilterWeight(0.7)
+                            ->required()
+                            ->exportBackgroundColor('#fff')      // Pen color on dark mode (defaults to penColor)
+                            ->exportPenColor('#333')
+                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn(string $context): bool => $context === 'create'),
+                    ])->columns(2),
             ]);
     }
 
@@ -198,6 +225,9 @@ class ProfileResource extends Resource
                 }
             })
             ->columns([
+                ImageColumn::make('profile_pic')
+                    ->label('Foto Profil')
+                    ->circular(),
                 TextColumn::make('first_name')
                     ->label('Nama Depan')
                     ->searchable()
@@ -236,44 +266,62 @@ class ProfileResource extends Resource
     {
         return $infolist
             ->schema([
-                Fieldset::make('Profile')
+                Infolists\Components\Section::make('Profil Pribadi')
                     ->schema([
-                        Infolists\Components\TextEntry::make('nik'),
-                        Infolists\Components\TextEntry::make('first_name'),
-                        Infolists\Components\TextEntry::make('last_name'),
-                        Infolists\Components\TextEntry::make('email'),
-                        Infolists\Components\TextEntry::make('no_hp'),
-                        Infolists\Components\TextEntry::make('tempat_lahir'),
-                        Infolists\Components\TextEntry::make('tanggal_lahir'),
-                        Infolists\Components\TextEntry::make('jenis_kelamin'),
-                        Infolists\Components\TextEntry::make('agama')
-                    ])
-                    ->columns([
-                        'sm' => 3,
-                        'xl' => 4,
-                        '2xl' => 5,
+                        Infolists\Components\Split::make([
+                            Infolists\Components\Section::make([
+                                ImageEntry::make('profile_pic')
+                                    ->label('Foto Profil'),
+                            ])->grow(false),
+                            Infolists\Components\Section::make([
+                                TextEntry::make('nik')
+                                    ->label('NIK / Nomor Induk Kependudukan')
+                                    ->columnSpanFull(),
+                                TextEntry::make('first_name')
+                                    ->label('Nama Depan'),
+                                TextEntry::make('last_name')
+                                    ->label('Nama Belakang'),
+                                TextEntry::make('email')
+                                    ->label('Email'),
+                                TextEntry::make('no_hp')
+                                    ->label('Nomor Handphone'),
+                                TextEntry::make('tempat_lahir')
+                                    ->label('Tempat Lahir'),
+                                TextEntry::make('tanggal_lahir')
+                                    ->label('Tanggal Lahir'),
+                                TextEntry::make('jenis_kelamin')
+                                    ->label('Jenis Kelamin'),
+                                TextEntry::make('agama')
+                                    ->label('Agama'),
+                            ])->columns(2),
+                        ])->from('md'),
                     ]),
 
-                Fieldset::make('Alamat')
+                Infolists\Components\Section::make('Alamat')
                     ->schema([
                         Infolists\Components\TextEntry::make('alamat')
-                            ->columnSpan(2),
+                            ->label('Alamat Lengkap')
+                            ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('subdistrict_id')
+                            ->label('Desa')
                             ->formatStateUsing(fn($state) => collect(app(SubDistrict::class)->getSubdistrictNameById($state))->first()),
                         Infolists\Components\TextEntry::make('district_id')
+                            ->label('Kecamatan / Kelurahan')
                             ->formatStateUsing(fn($state) => collect(app(District::class)->getDistrictNameById($state))->first()),
                         Infolists\Components\TextEntry::make('city_id')
+                            ->label('Kota/Kabupaten')
                             ->formatStateUsing(fn($state) => collect(app(City::class)->getCityNameById($state))->first()),
                         Infolists\Components\TextEntry::make('province_id')
+                            ->label('Provinsi')
                             ->formatStateUsing(fn($state) => collect(app(Province::class)->getProvinceNameById($state))->first()),
                     ])
                     ->columns([
                         'sm' => 2,
                         'xl' => 4,
-                        '2xl' => 5,
+                        '2xl' => 4,
                     ]),
 
-                Fieldset::make('Profile Kantor')
+                Infolists\Components\Section::make('Profile Kantor')
                     ->schema([
                         Infolists\Components\TextEntry::make('divisi.name'),
                         Infolists\Components\TextEntry::make('jabatan.name'),
@@ -283,15 +331,16 @@ class ProfileResource extends Resource
                     ->columns([
                         'sm' => 2,
                         'xl' => 4,
-                        '2xl' => 5,
+                        '2xl' => 4,
                     ]),
 
                 Infolists\Components\Section::make('Media')
                     ->collapsible()
                     ->schema([
                         Infolists\Components\ImageEntry::make('foto_ktp'),
-                        Infolists\Components\ImageEntry::make('signature'),
-                    ]),
+                        Infolists\Components\ImageEntry::make('signature')
+                            ->label('Tanda Tangan'),
+                    ])->columns(2),
             ]);
     }
 

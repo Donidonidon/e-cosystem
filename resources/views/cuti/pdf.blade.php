@@ -7,8 +7,8 @@
     <meta name=ProgId content=Word.Document>
     <meta name=Generator content="Microsoft Word 15">
     <meta name=Originator content="Microsoft Word 15">
-    <link rel=File-List href="web_files/filelist.xml">
-    <link rel=Edit-Time-Data href="web_files/editdata.mso">
+    <link rel=File-List href="pdf_files/filelist.xml">
+    <link rel=Edit-Time-Data href="pdf_files/editdata.mso">
     <!--[if !mso]>
 <style>
 v\:* {behavior:url(#default#VML);}
@@ -16,17 +16,39 @@ o\:* {behavior:url(#default#VML);}
 w\:* {behavior:url(#default#VML);}
 .shape {behavior:url(#default#VML);}
 </style>
-<![endif]-->
-    <link rel=themeData href="web_files/themedata.thmx">
-    <link rel=colorSchemeMapping href="web_files/colorschememapping.xml">
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>itsupport</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>itsupport</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>14</o:TotalTime>
+  <o:Created>2024-12-06T07:13:00Z</o:Created>
+  <o:LastSaved>2024-12-06T07:13:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>62</o:Words>
+  <o:Characters>360</o:Characters>
+  <o:Lines>3</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>421</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+    <link rel=themeData href="pdf_files/themedata.thmx">
+    <link rel=colorSchemeMapping href="pdf_files/colorschememapping.xml">
     <!--[if gte mso 9]><xml>
  <w:WordDocument>
-  <w:View>Print</w:View>
-  <w:Zoom>130</w:Zoom>
   <w:SpellingState>Clean</w:SpellingState>
   <w:GrammarState>Clean</w:GrammarState>
   <w:TrackMoves>false</w:TrackMoves>
   <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>5.5 pt</w:DrawingGridHorizontalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>2</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
   <w:ValidateAgainstSchemas/>
   <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
   <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
@@ -37,9 +59,15 @@ w\:* {behavior:url(#default#VML);}
   <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
   <w:Compatibility>
    <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
    <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
   </w:Compatibility>
-  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
   <m:mathPr>
    <m:mathFont m:val="Cambria Math"/>
    <m:brkBin m:val="before"/>
@@ -662,15 +690,6 @@ w\:* {behavior:url(#default#VML);}
             mso-font-signature: 536871559 3 0 0 415 0;
         }
 
-        @font-face {
-            font-family: "Neuron Angled";
-            mso-font-alt: Calibri;
-            mso-font-charset: 0;
-            mso-generic-font-family: swiss;
-            mso-font-pitch: variable;
-            mso-font-signature: -1610612177 268435530 0 0 151 0;
-        }
-
         /* Style Definitions */
         p.MsoNormal,
         li.MsoNormal,
@@ -682,63 +701,892 @@ w\:* {behavior:url(#default#VML);}
             margin-right: 0mm;
             margin-bottom: 8.0pt;
             margin-left: 0mm;
-            line-height: 106%;
+            line-height: 107%;
             mso-pagination: widow-orphan;
             font-size: 11.0pt;
             font-family: "Aptos", sans-serif;
-            mso-fareast-font-family: "Times New Roman";
-            mso-fareast-theme-font: minor-fareast;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
             mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
         }
 
-        p.msonormal0,
-        li.msonormal0,
-        div.msonormal0 {
-            mso-style-name: msonormal;
+        h1 {
+            mso-style-priority: 9;
             mso-style-unhide: no;
-            mso-margin-top-alt: auto;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 1 Char";
+            mso-style-next: Normal;
+            margin-top: 18.0pt;
             margin-right: 0mm;
-            mso-margin-bottom-alt: auto;
+            margin-bottom: 4.0pt;
             margin-left: 0mm;
-            mso-pagination: widow-orphan;
-            font-size: 12.0pt;
-            font-family: "Times New Roman", serif;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 1;
+            font-size: 20.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
             mso-fareast-font-family: "Times New Roman";
-            mso-fareast-theme-font: minor-fareast;
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-weight: normal;
         }
 
-        p.msochpdefault,
-        li.msochpdefault,
-        div.msochpdefault {
-            mso-style-name: msochpdefault;
-            mso-style-unhide: no;
-            mso-margin-top-alt: auto;
+        h2 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 2 Char";
+            mso-style-next: Normal;
+            margin-top: 8.0pt;
             margin-right: 0mm;
-            mso-margin-bottom-alt: auto;
+            margin-bottom: 4.0pt;
             margin-left: 0mm;
-            mso-pagination: widow-orphan;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 2;
+            font-size: 16.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-weight: normal;
+        }
+
+        h3 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 3 Char";
+            mso-style-next: Normal;
+            margin-top: 8.0pt;
+            margin-right: 0mm;
+            margin-bottom: 4.0pt;
+            margin-left: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 3;
+            font-size: 14.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-weight: normal;
+        }
+
+        h4 {
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 4 Char";
+            mso-style-next: Normal;
+            margin-top: 4.0pt;
+            margin-right: 0mm;
+            margin-bottom: 2.0pt;
+            margin-left: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 4;
             font-size: 11.0pt;
             font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
             mso-fareast-font-family: "Times New Roman";
-            mso-fareast-theme-font: minor-fareast;
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
             mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-weight: normal;
+            font-style: italic;
         }
 
-        p.msopapdefault,
-        li.msopapdefault,
-        div.msopapdefault {
-            mso-style-name: msopapdefault;
+        h5 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 5 Char";
+            mso-style-next: Normal;
+            margin-top: 4.0pt;
+            margin-right: 0mm;
+            margin-bottom: 2.0pt;
+            margin-left: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 5;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-weight: normal;
+        }
+
+        h6 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 6 Char";
+            mso-style-next: Normal;
+            margin-top: 2.0pt;
+            margin-right: 0mm;
+            margin-bottom: 0mm;
+            margin-left: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 6;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #595959;
+            mso-themecolor: text1;
+            mso-themetint: 166;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        p.MsoHeading7,
+        li.MsoHeading7,
+        div.MsoHeading7 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 7 Char";
+            mso-style-next: Normal;
+            margin-top: 2.0pt;
+            margin-right: 0mm;
+            margin-bottom: 0mm;
+            margin-left: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 7;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #595959;
+            mso-themecolor: text1;
+            mso-themetint: 166;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoHeading8,
+        li.MsoHeading8,
+        div.MsoHeading8 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 8 Char";
+            mso-style-next: Normal;
+            margin: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 8;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #272727;
+            mso-themecolor: text1;
+            mso-themetint: 216;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-style: italic;
+        }
+
+        p.MsoHeading9,
+        li.MsoHeading9,
+        div.MsoHeading9 {
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 9 Char";
+            mso-style-next: Normal;
+            margin: 0mm;
+            line-height: 107%;
+            mso-pagination: widow-orphan lines-together;
+            page-break-after: avoid;
+            mso-outline-level: 9;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #272727;
+            mso-themecolor: text1;
+            mso-themetint: 216;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoTitle,
+        li.MsoTitle,
+        div.MsoTitle {
+            mso-style-priority: 10;
             mso-style-unhide: no;
-            mso-margin-top-alt: auto;
+            mso-style-qformat: yes;
+            mso-style-link: "Title Char";
+            mso-style-next: Normal;
+            margin-top: 0mm;
+            margin-right: 0mm;
+            margin-bottom: 4.0pt;
+            margin-left: 0mm;
+            mso-add-space: auto;
+            mso-pagination: widow-orphan;
+            font-size: 28.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            letter-spacing: -.5pt;
+            mso-font-kerning: 14.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoTitleCxSpFirst,
+        li.MsoTitleCxSpFirst,
+        div.MsoTitleCxSpFirst {
+            mso-style-priority: 10;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Title Char";
+            mso-style-next: Normal;
+            mso-style-type: export-only;
+            margin: 0mm;
+            mso-add-space: auto;
+            mso-pagination: widow-orphan;
+            font-size: 28.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            letter-spacing: -.5pt;
+            mso-font-kerning: 14.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoTitleCxSpMiddle,
+        li.MsoTitleCxSpMiddle,
+        div.MsoTitleCxSpMiddle {
+            mso-style-priority: 10;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Title Char";
+            mso-style-next: Normal;
+            mso-style-type: export-only;
+            margin: 0mm;
+            mso-add-space: auto;
+            mso-pagination: widow-orphan;
+            font-size: 28.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            letter-spacing: -.5pt;
+            mso-font-kerning: 14.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoTitleCxSpLast,
+        li.MsoTitleCxSpLast,
+        div.MsoTitleCxSpLast {
+            mso-style-priority: 10;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Title Char";
+            mso-style-next: Normal;
+            mso-style-type: export-only;
+            margin-top: 0mm;
+            margin-right: 0mm;
+            margin-bottom: 4.0pt;
+            margin-left: 0mm;
+            mso-add-space: auto;
+            mso-pagination: widow-orphan;
+            font-size: 28.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            letter-spacing: -.5pt;
+            mso-font-kerning: 14.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoSubtitle,
+        li.MsoSubtitle,
+        div.MsoSubtitle {
+            mso-style-priority: 11;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Subtitle Char";
+            mso-style-next: Normal;
+            margin-top: 0mm;
             margin-right: 0mm;
             margin-bottom: 8.0pt;
             margin-left: 0mm;
-            line-height: 106%;
+            line-height: 107%;
             mso-pagination: widow-orphan;
-            font-size: 12.0pt;
+            font-size: 14.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #595959;
+            mso-themecolor: text1;
+            mso-themetint: 166;
+            letter-spacing: .75pt;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoListParagraph,
+        li.MsoListParagraph,
+        div.MsoListParagraph {
+            mso-style-priority: 34;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            margin-top: 0mm;
+            margin-right: 0mm;
+            margin-bottom: 8.0pt;
+            margin-left: 36.0pt;
+            mso-add-space: auto;
+            line-height: 107%;
+            mso-pagination: widow-orphan;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoListParagraphCxSpFirst,
+        li.MsoListParagraphCxSpFirst,
+        div.MsoListParagraphCxSpFirst {
+            mso-style-priority: 34;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-type: export-only;
+            margin-top: 0mm;
+            margin-right: 0mm;
+            margin-bottom: 0mm;
+            margin-left: 36.0pt;
+            mso-add-space: auto;
+            line-height: 107%;
+            mso-pagination: widow-orphan;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoListParagraphCxSpMiddle,
+        li.MsoListParagraphCxSpMiddle,
+        div.MsoListParagraphCxSpMiddle {
+            mso-style-priority: 34;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-type: export-only;
+            margin-top: 0mm;
+            margin-right: 0mm;
+            margin-bottom: 0mm;
+            margin-left: 36.0pt;
+            mso-add-space: auto;
+            line-height: 107%;
+            mso-pagination: widow-orphan;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoListParagraphCxSpLast,
+        li.MsoListParagraphCxSpLast,
+        div.MsoListParagraphCxSpLast {
+            mso-style-priority: 34;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-type: export-only;
+            margin-top: 0mm;
+            margin-right: 0mm;
+            margin-bottom: 8.0pt;
+            margin-left: 36.0pt;
+            mso-add-space: auto;
+            line-height: 107%;
+            mso-pagination: widow-orphan;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+        }
+
+        p.MsoQuote,
+        li.MsoQuote,
+        div.MsoQuote {
+            mso-style-priority: 29;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Quote Char";
+            mso-style-next: Normal;
+            margin-top: 8.0pt;
+            margin-right: 0mm;
+            margin-bottom: 8.0pt;
+            margin-left: 0mm;
+            text-align: center;
+            line-height: 107%;
+            mso-pagination: widow-orphan;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            color: #404040;
+            mso-themecolor: text1;
+            mso-themetint: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-style: italic;
+        }
+
+        p.MsoIntenseQuote,
+        li.MsoIntenseQuote,
+        div.MsoIntenseQuote {
+            mso-style-priority: 30;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Intense Quote Char";
+            mso-style-next: Normal;
+            margin-top: 18.0pt;
+            margin-right: 43.2pt;
+            margin-bottom: 18.0pt;
+            margin-left: 43.2pt;
+            text-align: center;
+            line-height: 107%;
+            mso-pagination: widow-orphan;
+            border: none;
+            mso-border-top-alt: solid #0F4761 .5pt;
+            mso-border-top-themecolor: accent1;
+            mso-border-top-themeshade: 191;
+            mso-border-bottom-alt: solid #0F4761 .5pt;
+            mso-border-bottom-themecolor: accent1;
+            mso-border-bottom-themeshade: 191;
+            padding: 0mm;
+            mso-padding-alt: 10.0pt 0mm 10.0pt 0mm;
+            font-size: 11.0pt;
+            font-family: "Aptos", sans-serif;
+            mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
+            mso-hansi-font-family: Aptos;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            mso-font-kerning: 1.0pt;
+            mso-ligatures: standardcontextual;
+            font-style: italic;
+        }
+
+        span.MsoIntenseEmphasis {
+            mso-style-priority: 21;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            font-style: italic;
+        }
+
+        span.MsoIntenseReference {
+            mso-style-priority: 32;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            font-variant: small-caps;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            letter-spacing: .25pt;
+            font-weight: bold;
+        }
+
+        span.Heading1Char {
+            mso-style-name: "Heading 1 Char";
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 1";
+            mso-ansi-font-size: 20.0pt;
+            mso-bidi-font-size: 20.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+        }
+
+        span.Heading2Char {
+            mso-style-name: "Heading 2 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 2";
+            mso-ansi-font-size: 16.0pt;
+            mso-bidi-font-size: 16.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+        }
+
+        span.Heading3Char {
+            mso-style-name: "Heading 3 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 3";
+            mso-ansi-font-size: 14.0pt;
+            mso-bidi-font-size: 14.0pt;
             font-family: "Times New Roman", serif;
             mso-fareast-font-family: "Times New Roman";
-            mso-fareast-theme-font: minor-fareast;
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+        }
+
+        span.Heading4Char {
+            mso-style-name: "Heading 4 Char";
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 4";
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            font-style: italic;
+        }
+
+        span.Heading5Char {
+            mso-style-name: "Heading 5 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 5";
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+        }
+
+        span.Heading6Char {
+            mso-style-name: "Heading 6 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 6";
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #595959;
+            mso-themecolor: text1;
+            mso-themetint: 166;
+            font-style: italic;
+        }
+
+        span.Heading7Char {
+            mso-style-name: "Heading 7 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 7";
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #595959;
+            mso-themecolor: text1;
+            mso-themetint: 166;
+        }
+
+        span.Heading8Char {
+            mso-style-name: "Heading 8 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 8";
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #272727;
+            mso-themecolor: text1;
+            mso-themetint: 216;
+            font-style: italic;
+        }
+
+        span.Heading9Char {
+            mso-style-name: "Heading 9 Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Heading 9";
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #272727;
+            mso-themecolor: text1;
+            mso-themetint: 216;
+        }
+
+        span.TitleChar {
+            mso-style-name: "Title Char";
+            mso-style-priority: 10;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: Title;
+            mso-ansi-font-size: 28.0pt;
+            mso-bidi-font-size: 28.0pt;
+            font-family: "Aptos Display", sans-serif;
+            mso-ascii-font-family: "Aptos Display";
+            mso-ascii-theme-font: major-latin;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-hansi-font-family: "Aptos Display";
+            mso-hansi-theme-font: major-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            letter-spacing: -.5pt;
+            mso-font-kerning: 14.0pt;
+        }
+
+        span.SubtitleChar {
+            mso-style-name: "Subtitle Char";
+            mso-style-priority: 11;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: Subtitle;
+            mso-ansi-font-size: 14.0pt;
+            mso-bidi-font-size: 14.0pt;
+            font-family: "Times New Roman", serif;
+            mso-fareast-font-family: "Times New Roman";
+            mso-fareast-theme-font: major-fareast;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: major-bidi;
+            color: #595959;
+            mso-themecolor: text1;
+            mso-themetint: 166;
+            letter-spacing: .75pt;
+        }
+
+        span.QuoteChar {
+            mso-style-name: "Quote Char";
+            mso-style-priority: 29;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: Quote;
+            color: #404040;
+            mso-themecolor: text1;
+            mso-themetint: 191;
+            font-style: italic;
+        }
+
+        span.IntenseQuoteChar {
+            mso-style-name: "Intense Quote Char";
+            mso-style-priority: 30;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-link: "Intense Quote";
+            color: #0F4761;
+            mso-themecolor: accent1;
+            mso-themeshade: 191;
+            font-style: italic;
         }
 
         span.SpellE {
@@ -756,19 +1604,23 @@ w\:* {behavior:url(#default#VML);}
             mso-default-props: yes;
             font-family: "Aptos", sans-serif;
             mso-ascii-font-family: Aptos;
+            mso-ascii-theme-font: minor-latin;
+            mso-fareast-font-family: Aptos;
+            mso-fareast-theme-font: minor-latin;
             mso-hansi-font-family: Aptos;
-            mso-font-kerning: 0pt;
-            mso-ligatures: none;
+            mso-hansi-theme-font: minor-latin;
+            mso-bidi-font-family: "Times New Roman";
+            mso-bidi-theme-font: minor-bidi;
         }
 
         .MsoPapDefault {
             mso-style-type: export-only;
             margin-bottom: 8.0pt;
-            line-height: 106%;
+            line-height: 107%;
         }
 
         @page WordSection1 {
-            size: 841.9pt 595.3pt;
+            size: 419.6pt 210.0mm;
             margin: 36.0pt 36.0pt 36.0pt 36.0pt;
             mso-header-margin: 36.0pt;
             mso-footer-margin: 36.0pt;
@@ -795,10 +1647,37 @@ w\:* {behavior:url(#default#VML);}
  mso-para-margin-right:0mm;
  mso-para-margin-bottom:8.0pt;
  mso-para-margin-left:0mm;
- line-height:106%;
+ line-height:107%;
  mso-pagination:widow-orphan;
  font-size:11.0pt;
- font-family:"Aptos",sans-serif;}
+ font-family:"Aptos",sans-serif;
+ mso-ascii-font-family:Aptos;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Aptos;
+ mso-hansi-theme-font:minor-latin;
+ mso-font-kerning:1.0pt;
+ mso-ligatures:standardcontextual;}
+table.MsoTableGrid
+ {mso-style-name:"Table Grid";
+ mso-tstyle-rowband-size:0;
+ mso-tstyle-colband-size:0;
+ mso-style-priority:39;
+ mso-style-unhide:no;
+ border:solid windowtext 1.0pt;
+ mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0mm 5.4pt 0mm 5.4pt;
+ mso-border-insideh:.5pt solid windowtext;
+ mso-border-insidev:.5pt solid windowtext;
+ mso-para-margin:0mm;
+ mso-pagination:widow-orphan;
+ font-size:11.0pt;
+ font-family:"Aptos",sans-serif;
+ mso-ascii-font-family:Aptos;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Aptos;
+ mso-hansi-theme-font:minor-latin;
+ mso-font-kerning:1.0pt;
+ mso-ligatures:standardcontextual;}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
  <o:shapedefaults v:ext="edit" spidmax="1026"/>
@@ -812,238 +1691,250 @@ w\:* {behavior:url(#default#VML);}
 
     <div class=WordSection1>
 
-        <p class=MsoNormal><span style='mso-no-proof:yes'><img width=489 height=105 id="_x0000_i1025"
-                    src="assets/images/cuti/header.png"
-                    alt="A close up of a contact us&#10;&#10;Description automatically generated"></span></p>
+        <p class=MsoNormal><span style='mso-no-proof:yes'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="Picture_x0020_1" o:spid="_x0000_i1028" type="#_x0000_t75"
+ style='width:347.25pt;height:74.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="pdf_files/image001.png" o:title=""/>
+</v:shape><![endif]-->
+                <![if !vml]><img width=463 height=99 src="assets/images/cuti/header.png" v:shapes="Picture_x0020_1">
+                <![endif]>
+            </span></p>
 
-        <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-line-height:normal'><b><span
-                    lang=SV
-                    style='font-size:14.0pt;font-family:"Neuron Angled",sans-serif;
-mso-ansi-language:SV'>&nbsp;</span></b>
-        </p>
-
-        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
-            style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0mm 0mm 0mm 0mm'>
+        <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+            style='border-collapse:collapse;border:none;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0mm 5.4pt 0mm 5.4pt;mso-border-insideh:none;mso-border-insidev:none'>
             <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-                <td width=489 valign=top style='width:366.45pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                <td width=463 valign=top style='width:347.1pt;padding:0mm 5.4pt 0mm 5.4pt'>
                     <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
   line-height:normal'>
-                        <b><span lang=SV
-                                style='font-size:16.0pt;font-family:
-  "Calibri",sans-serif;mso-ansi-language:SV'>Surat
-                                Keterangan Pengajuan</span></b>
+                        <b><span style='font-size:16.0pt;font-family:"Calibri",sans-serif'>Surat
+                                <span class=SpellE>Keterangan</span> <span class=SpellE>Pengajuan</span>
+                                <o:p></o:p>
+                            </span></b>
                     </p>
                     <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
   line-height:normal'>
-                        <b><span lang=SV
-                                style='font-size:16.0pt;font-family:
-  "Calibri",sans-serif;mso-ansi-language:SV'>Tidak
-                                Masuk / Cuti</span></b>
+                        <b><span style='font-size:16.0pt;font-family:"Calibri",sans-serif'>Tidak
+                                Masuk / Cuti<o:p></o:p></span></b>
                     </p>
                 </td>
             </tr>
         </table>
 
-        <p class=MsoNormal><span style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'>&nbsp;
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:normal'><b><span
+                    style='font-size:16.0pt;font-family:"Calibri",sans-serif'>
+                    <o:p>&nbsp;</o:p>
+                </span></b></p>
+
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span
+                style='font-family:"Calibri",sans-serif'>Yang <span class=SpellE>bertanda</span>
+                <span class=SpellE>tangan</span> <span class=SpellE>dibawah</span> <span class=SpellE>ini</span>,<o:p>
+                </o:p></span></p>
+
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span
+                style='font-family:"Calibri",sans-serif'>Nama <span style='mso-tab-count:1'> </span>:
+                {{ $cuti->user->name }}<o:p></o:p></span></p>
+
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span class=SpellE><span class=GramE><span
+                        style='font-family:"Calibri",sans-serif'>Jabatan</span></span></span><span class=GramE><span
+                    style='font-family:"Calibri",sans-serif'> :</span></span><span
+                style='font-family:"Calibri",sans-serif'> {{ $cuti->user->profile->jabatan->name }}<o:p></o:p></span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span class=SpellE><span
+                    style='font-family:"Calibri",sans-serif'>Mengajukan</span></span><span
+                style='font-family:"Calibri",sans-serif'> <span class=SpellE>izin</span> <span
+                    class=SpellE>tidak</span> <span class=SpellE>masuk</span> <span class=SpellE>selama</span>
+                {{ $jumlahHari }} <span class=SpellE>hari</span> <span class=SpellE>sejak</span>
+                {{ \Carbon\Carbon::parse($cuti->start_date)->translatedFormat('d F Y') }}<o:p></o:p></span></p>
+
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span class=SpellE>sampai</span> <span
+                class=SpellE>dengan</span> {{ \Carbon\Carbon::parse($cuti->end_date)->translatedFormat('d F Y') }}<o:p>
+            </o:p></span></p>
+
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span class=SpellE><span
+                    style='font-family:"Calibri",sans-serif'>Dengan</span></span><span
+                style='font-family:"Calibri",sans-serif'> <span class=SpellE><span
+                        class=GramE>alasan</span></span><span class=GramE> :</span>
                 <o:p></o:p>
             </span></p>
 
-        <p class=MsoNormal>
-            <o:p>&nbsp;</o:p>
-        </p>
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span
+                style='font-family:"Calibri",sans-serif'>{{ $cuti->reason }}<o:p></o:p></span></p>
 
-        <p class=MsoNormal><span style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'>Yang
-                <span class=SpellE>bertanda</span> <span class=SpellE>tangan</span> <span class=SpellE>dibawah</span>
-                <span class=SpellE>ini</span>,</span></p>
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span class=SpellE><span
+                    style='font-family:"Calibri",sans-serif'>Demikian</span></span><span
+                style='font-family:"Calibri",sans-serif'> <span class=SpellE>keterangan</span>
+                kami <span class=SpellE>buat</span> dan <span class=SpellE>digunakan</span> <span
+                    class=SpellE>sebagaimana</span>
+                <o:p></o:p>
+            </span></p>
 
-        <p class=MsoNormal><span style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'>Nama
-                &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=GramE>&nbsp;
-                    :</span> {{ $cuti->user->name }}</span></p>
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:150%'><span class=SpellE><span
+                    style='font-family:"Calibri",sans-serif'>mestinya</span></span><span
+                style='font-family:"Calibri",sans-serif'>.<o:p></o:p></span></p>
 
-        <p class=MsoNormal><span class=SpellE><span
-                    style='font-size:12.0pt;line-height:
-106%;font-family:"Calibri",sans-serif'>Jabatan</span></span><span
-                style='font-size:12.0pt;line-height:106%;font-family:"Calibri",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                    class=GramE>&nbsp; :</span> {{ $cuti->user->profile->jabatan->name }}</span></p>
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:normal'><b><span
+                    style='font-size:16.0pt;font-family:"Calibri",sans-serif'>
+                    <o:p>&nbsp;</o:p>
+                </span></b></p>
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:normal'><b><span
+                    style='font-size:16.0pt;font-family:"Calibri",sans-serif'>
+                    <o:p>&nbsp;</o:p>
+                </span></b></p>
 
-        <p class=MsoNormal><span class=SpellE><span
-                    style='font-size:12.0pt;line-height:
-106%;font-family:"Calibri",sans-serif'>Mengajukan</span></span><span
-                style='font-size:12.0pt;line-height:106%;font-family:"Calibri",sans-serif'> <span
-                    class=SpellE>izin</span> <span class=SpellE>tidak</span> <span class=SpellE>masuk</span>
-                <span class=SpellE>selama</span> {{ $jumlahHari }} hari <span class=SpellE>sejak</span>
-                {{ \Carbon\Carbon::parse($cuti->start_date)->translatedFormat('d F Y') }} </p>
-
-        <p class=MsoNormal>
-            <span style='font-size:12.0pt;line-height:106%;font-family:"Calibri",sans-serif'>
-                <span class=SpellE>sampai</span>
-                <span class=SpellE>dengan</span> {{ \Carbon\Carbon::parse($cuti->end_date)->translatedFormat('d F Y') }}
-            </span>
-        </p>
-
-        <p class=MsoNormal><span class=SpellE><span
-                    style='font-size:12.0pt;line-height:
-106%;font-family:"Calibri",sans-serif'>Dengan</span></span><span
-                style='font-size:12.0pt;line-height:106%;font-family:"Calibri",sans-serif'> <span class=SpellE><span
-                        class=GramE>alasan</span></span><span class=GramE> :</span></span></p>
-
-        <p class=MsoNormal><span style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'> -
-                {{ $cuti->reason }}</span>
-        </p>
-
-        <p class=MsoNormal><span class=SpellE><span
-                    style='font-size:12.0pt;line-height:
-106%;font-family:"Calibri",sans-serif'>Demikian</span></span><span
-                style='font-size:12.0pt;line-height:106%;font-family:"Calibri",sans-serif'> <span
-                    class=SpellE>keterangan</span> kami <span class=SpellE>buat</span> dan <span
-                    class=SpellE>digunakan</span> <span class=SpellE>sebagaimana</span> <span
-                    class=SpellE>mestinya</span>.</span></p>
-
-        <p class=MsoNormal><span
-                style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'>&nbsp;</span></p>
-
-        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
-            style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0mm 0mm 0mm 0mm'>
-            <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-                <td width=489 style='width:366.45pt;padding:0mm 5.4pt 0mm 5.4pt'>
-                    <p class=MsoNormal align=right style='margin-bottom:0mm;text-align:right;
-  line-height:normal'>
-                        <span style='font-size:12.0pt;font-family:"Calibri",sans-serif'>Malang,
-                            {{ $cuti->created_at->translatedFormat('d F Y') }}</span>
+        <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+            style='border-collapse:collapse;border:none;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0mm 5.4pt 0mm 5.4pt;mso-border-insideh:none;mso-border-insidev:none'>
+            <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+                <td width=463 colspan=3 valign=top style='width:347.1pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=right
+                        style='margin-bottom:0mm;text-align:right;
+  line-height:250%; margin-right:10mm'>
+                        <span style='font-family:"Calibri",sans-serif'>Malang,
+                            {{ $cuti->created_at->translatedFormat('d F Y') }}<o:p></o:p></span>
+                    </p>
+                </td>
+            </tr>
+            <p class=MsoNormal style='margin-bottom:0mm;line-height:115%'><span
+                    style='font-family:"Calibri",sans-serif'>
+                    <o:p>&nbsp;</o:p>
+                </span></p>
+            <tr style='mso-yfti-irow:1'>
+                <td width=154 valign=top style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:10mm;text-align:center;
+  line-height:115%'>
+                        <span class=SpellE><span style='font-family:"Calibri",sans-serif'>Pemohon</span></span><span
+                            style='font-family:"Calibri",sans-serif'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=154 valign=top style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span class=SpellE><span
+                                style='font-family:"Calibri",sans-serif'>Mengetahui</span></span><span
+                            style='font-family:"Calibri",sans-serif'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif'>Pimp / RL<o:p></o:p></span>
+                    </p>
+                </td>
+                <td width=154 valign=top style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif'>Menyutujui<o:p></o:p></span>
+                    </p>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span class=SpellE><span style='font-family:"Calibri",sans-serif'>Dirut</span></span><span
+                            style='font-family:"Calibri",sans-serif'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='mso-yfti-irow:2;height:73.7pt'>
+                <td width=154 style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt;height:73.7pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif;mso-no-proof:
+  yes'><!--[if gte vml 1]><v:shape id="_x0000_i1027" type="#_x0000_t75"
+   style='width:90.75pt;height:57.75pt;visibility:visible;mso-wrap-style:square'>
+   <v:imagedata src="pdf_files/image003.png" o:title=""/>
+  </v:shape><![endif]-->
+                            <![if !vml]><img width=121 height=77
+                                src="{{ public_path('storage/' . $cuti->user->profile->signature) }}"
+                                v:shapes="_x0000_i1027">
+                            <![endif]>
+                        </span><span style='font-family:"Calibri",sans-serif'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=154 style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt;height:73.7pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif;mso-no-proof:
+  yes'><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+   style='width:81pt;height:51pt;visibility:visible;mso-wrap-style:square'>
+   <v:imagedata src="pdf_files/image005.png" o:title=""/>
+  </v:shape><![endif]-->
+                            <![if !vml]><img width=108 height=68
+                                src="{{ public_path('storage/' . $signatureLeader) }}" v:shapes="_x0000_i1026">
+                            <![endif]>
+                        </span><span style='font-family:"Calibri",sans-serif'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+                <td width=154 style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt;height:73.7pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif;mso-no-proof:
+  yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_2" o:spid="_x0000_i1025"
+   type="#_x0000_t75" style='width:90.75pt;height:57.75pt;visibility:visible;
+   mso-wrap-style:square'>
+   <v:imagedata src="pdf_files/image003.png" o:title=""/>
+  </v:shape><![endif]-->
+                            <![if !vml]><img width=121 height=77
+                                src="{{ public_path('storage/' . $signatureDireksi) }}" v:shapes="Picture_x0020_2">
+                            <![endif]>
+                        </span><span style='font-family:"Calibri",sans-serif'>
+                            <o:p></o:p>
+                        </span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+                <td width=154 valign=top style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif'>{{ $cuti->user->name }}<o:p></o:p></span>
+                    </p>
+                </td>
+                <td width=154 valign=top style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif'>{{ $leaderName }}<o:p></o:p></span>
+                    </p>
+                </td>
+                <td width=154 valign=top style='width:115.7pt;padding:0mm 5.4pt 0mm 5.4pt'>
+                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
+  line-height:115%'>
+                        <span style='font-family:"Calibri",sans-serif'>{{ $direksiName }}<o:p></o:p></span>
                     </p>
                 </td>
             </tr>
         </table>
 
-        <p class=MsoNormal><span
-                style='font-size:12.0pt;line-height:106%;font-family:
-"Calibri",sans-serif'>&nbsp;</span></p>
-
-        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
-            style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0mm 0mm 0mm 0mm'>
-            <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:15.45pt'>
-                <td width=161 rowspan=2 valign=top
-                    style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:15.45pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>Pemohon</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:15.45pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>Mengetahui</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.9pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:15.45pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>Menyetujui</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style='mso-yfti-irow:1;height:7.7pt'>
-                <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:7.7pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>Pimp /
-                            TL</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.9pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:7.7pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>Dirut</span>
-                    </p>
-                    {{-- <img src="{{ $signatureHrd }}" alt=""> --}}
-                </td>
-            </tr>
-            <tr style='mso-yfti-irow:2;height:45.85pt'>
-                <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:45.85pt'>
-                    <p class=MsoNormal style='margin-bottom:0mm;text-align:justify;line-height:
-  normal'><span
-                            lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>&nbsp;</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:45.85pt'>
-                    <p class=MsoNormal style='margin-bottom:0mm;text-align:justify;line-height:
-  normal'><span
-                            lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>&nbsp;</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.9pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:45.85pt'>
-                    <p class=MsoNormal style='margin-bottom:0mm;text-align:justify;line-height:
-  normal'><span
-                            lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>&nbsp;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes;height:15.45pt'>
-                <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:15.45pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>
-                            ({{ $cuti->user->name }})</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.85pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:15.45pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>__________</span>
-                    </p>
-                </td>
-                <td width=161 valign=top style='width:120.9pt;padding:0mm 5.4pt 0mm 5.4pt;
-  height:15.45pt'>
-                    <p class=MsoNormal align=center style='margin-bottom:0mm;text-align:center;
-  line-height:normal'>
-                        <span lang=SV
-                            style='font-size:12.0pt;font-family:"Calibri",sans-serif;
-  mso-ansi-language:SV'>________</span>
-                    </p>
-                </td>
-            </tr>
-        </table>
-
-        <p class=MsoNormal>
-            <o:p>&nbsp;</o:p>
-        </p>
+        <p class=MsoNormal style='margin-bottom:0mm;line-height:115%'><span
+                style='font-family:"Calibri",sans-serif'>
+                <o:p>&nbsp;</o:p>
+            </span></p>
 
     </div>
 
