@@ -48,4 +48,11 @@ class ListAttendences extends ListRecords
         }
         return [$presensi];
     }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            AttendenceResource\Widgets\UserAttendencesStatisticsWidget::class,
+        ];
+    }
 }

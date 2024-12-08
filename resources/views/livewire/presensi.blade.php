@@ -9,7 +9,7 @@
                         <p id="demo"><strong>Kantor : </strong>{{ $kantorName }}</p>
                         <p><strong>Shift : </strong>{{ $schedule->shift->name }} ({{ $schedule->shift->start_time }} -
                             {{ $schedule->shift->end_time }}) wib</p>
-                        @if ($schedule->is_wfa)
+                        @if ($isWfa)
                             <p class="text-green-500"><strong>Status : </strong>WFA</p>
                         @else
                             <p><strong>Status : </strong>WFO</p>
@@ -38,29 +38,35 @@
                     <form class="row g-3 mt-3" wire:submit="store" enctype="multipart/form-data">
                         <!-- Rounded switch -->
                         <div class="p-4">
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" wire:model.live="isWfa" class="sr-only peer">
-                                <div
-                                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-                                </div>
-                                <span class="ms-3 text-sm font-medium">Absen Diluar Kantor</span>
-                            </label>
+                            @if ($isWfa)
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" wire:model.live="isWfa" class="sr-only peer">
+                                    <div
+                                        class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                    </div>
+                                    <span class="ms-3 text-sm font-medium">Absen Diluar Kantor</span>
+                                </label>
+                            @endif
 
                             @if ($isWfa)
                                 <div class="mt-4">
-                                    <label for="deskripsi"
-                                        class="block text-sm font-medium text-gray-700">Deskripsi</label>
-                                    <textarea id="deskripsi" wire:model="deskripsi" rows="3"
-                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
-                                    <p class="mt-2 text-sm text-gray-500">Berikan penjelasan mengapa Anda absen di luar
-                                        kantor.</p>
+                                    <div class="flex flex-col space-y-2">
+                                        <label for="deskripsi" class="text-sm font-medium text-gray-700">Your
+                                            Message</label>
+                                        <textarea id="deskripsi" wire:model="deskripsi" rows="4"
+                                            class="text-sm font-medium p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+                                            placeholder="Berikan penjelasan mengapa Anda absen di luar kantor yaa ;)"></textarea>
+                                        @error('deskripsi')
+                                            <span class="text-sm text-red-500">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             @endif
                         </div>
 
                         <button type="button" onclick="tagLocation()"
                             class="px-4 py-2 bg-blue-500 text-white rounded">Tag Location</button>
-                        @if ($insideRadius)
+                        @if ($insideRadius || $isWfa)
                             <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">Submit
                                 Presensi</button>
                         @endif
@@ -76,9 +82,6 @@
         let map;
         let lat;
         let lng;
-        const office = [{{ $schedule->kantor->latitude }}, {{ $schedule->kantor->longitude }}];
-        const radius = {{ $schedule->kantor->radius }};
-
         const kantorData = @json($kantor);
 
         let component;
@@ -89,13 +92,6 @@
             map = L.map('map').setView([{{ $schedule->kantor->latitude }}, {{ $schedule->kantor->longitude }}],
                 17);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-            const circle = L.circle(office, {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: radius
-            }).addTo(map);
 
             for (let i = 0; i < kantorData.length; i++) {
                 const kantor = [kantorData[i].latitude, kantorData[i].longitude];
@@ -136,19 +132,25 @@
                         if (isWithinRadius(lat, lng, kantorLatLng, radius)) {
                             isInsideAnyCircle = true;
                             kantorName = kantor.name; // Simpan nama kantor
-                            kantorID = kantor.id; // Simpan nama kantor
+                            kantorID = kantor.id; // Simpan id kantor
                         }
                     });
 
                     if (isInsideAnyCircle) {
                         component.set('insideRadius', true);
+                        component.set('isWfa', false);
                         component.set('latitude', lat);
                         component.set('longitude', lng);
                         component.set('kantorID', kantorID);
                         component.set('kantorName', kantorName);
                     } else {
-                        component.set('insideRadius', false);
+                        // component.set('insideRadius', false);
                         alert('Anda berada di luar radius kantor.');
+                        component.set('isWfa', true);
+                        component.set('latitude', lat);
+                        component.set('longitude', lng);
+                        component.set('kantorID', 5);
+                        component.set('kantorName', 'WFA');
                     }
                 });
             } else {
@@ -159,6 +161,7 @@
         function isWithinRadius(lat, lng, center, radius) {
             const is_wfa = {{ $schedule->is_wfa }}
             if (is_wfa) {
+                component.set('isWfa', true);
                 return true;
             } else {
                 let distance = map.distance([lat, lng], center);
@@ -167,5 +170,4 @@
 
         }
     </script>
-
 </div>

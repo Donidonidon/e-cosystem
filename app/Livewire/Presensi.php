@@ -19,9 +19,15 @@ class Presensi extends Component
     public $timeNow;
 
     public $isWfa = false;
-    public $deskripsi = '';
+    public $deskripsi;
     public $kantorID;
     public $kantorName = '';
+
+    // Pesan validasi khusus (opsional)
+    protected $messages = [
+        'deskripsi.required_if' => 'Deskripsi harus diisi yaa',
+        'deskripsi.min' => 'Deskripsi harus memiliki minimal 3 karakter.',
+    ];
 
     public function render()
     {
@@ -29,7 +35,7 @@ class Presensi extends Component
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
         $kantorTugasID = $schedule->kantor->id; //ID kantor tugas
         // $kantorTugas = $schedule->kantor; //kantor tugas
-        $kantor = Kantor::where('id', '!=', $kantorTugasID)->get(); //selain kantor tugas
+        $kantor = Kantor::all(); //selain kantor tugas
 
         $attendance = Attendence::where('user_id', Auth::user()->id)
             ->whereDate('created_at', date('Y-m-d'))
@@ -54,6 +60,7 @@ class Presensi extends Component
             'latitude' => 'required',
             'longitude' => 'required',
             'kantorID' => 'required',
+            'deskripsi' => 'required_if:isWfa,true|min:3',
         ]);
 
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
