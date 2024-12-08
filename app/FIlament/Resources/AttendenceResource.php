@@ -9,6 +9,7 @@ use App\Models\Attendence;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Exports\AttendenceExport;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,7 +17,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AttendenceResource\Pages;
 use App\Filament\Resources\AttendenceResource\RelationManagers;
-use Filament\Tables\Actions\Action;
+use App\Filament\Resources\AttendenceResource\RelationManagers\UserRelationManager;
+use App\Filament\Resources\AttendenceResource\Widgets\UserAttendencesStatisticsWidget;
+use Filament\Resources\RelationManagers\RelationManager;
+use Illuminate\Database\Eloquent\Factories\Relationship;
 
 class AttendenceResource extends Resource
 {
@@ -96,7 +100,12 @@ class AttendenceResource extends Resource
                     })
                     ->description(fn(Attendence $record): string => $record->onTimeOrLate() ?: ''),
                 Tables\Columns\TextColumn::make('kantor.name')
-                    ->label('Absen di Kantor'),
+                    ->label('Absen di Kantor')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'WFA' => 'info',
+                        default => 'gray',
+                    }),
                 Tables\Columns\TextColumn::make('start_time')
                     ->label('Waktu Datang'),
                 Tables\Columns\TextColumn::make('end_time')
@@ -159,6 +168,13 @@ class AttendenceResource extends Resource
             'index' => Pages\ListAttendences::route('/'),
             'create' => Pages\CreateAttendence::route('/create'),
             'edit' => Pages\EditAttendence::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            UserAttendencesStatisticsWidget::class
         ];
     }
 }

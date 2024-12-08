@@ -18,6 +18,7 @@ class KantorSeeder extends Seeder
             ['name' => 'Kantor Cabang', 'latitude' => -7.66780, 'longitude' => 112.69946, 'created_at' => now(), 'radius' => 15],
             ['name' => 'Kantor Kas Tlogomas', 'latitude' => -7.92938, 'longitude' => 112.60305, 'created_at' => now(), 'radius' => 15],
             ['name' => 'Kantor Kas Pakisaji', 'latitude' => -8.07425, 'longitude' => 112.59364, 'created_at' => now(), 'radius' => 15],
+            ['name' => 'WFA', 'latitude' => 0, 'longitude' => 0, 'created_at' => now(), 'radius' => 0],
         ]);
     }
 }
