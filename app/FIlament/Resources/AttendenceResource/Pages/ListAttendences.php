@@ -55,4 +55,11 @@ class ListAttendences extends ListRecords
             AttendenceResource\Widgets\UserAttendencesStatisticsWidget::class,
         ];
     }
+
+    protected function getFooterWidgets(): array
+    {
+        return [
+            AttendenceResource\Widgets\AttendencesOverview::class,
+        ];
+    }
 }

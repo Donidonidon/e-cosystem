@@ -15,7 +15,8 @@ class ListCutis extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Buat Pengajuan Cuti'),
         ];
     }
 
@@ -27,6 +28,8 @@ class ListCutis extends ListRecords
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'pending')),
             'approved' => Tab::make()
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'approved')),
+            'rejected' => Tab::make()
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'rejected')),
         ];
     }
 }

@@ -63,14 +63,4 @@ class Profile extends Model
     {
         return $this->belongsTo(Kantor::class);
     }
-
-    protected static function booted()
-    {
-        static::saving(function ($model) {
-            // Pastikan nik tidak null dan hilangkan spasi
-            if ($model->nik) {
-                $model->nik = str_replace(' ', '', $model->nik);
-            }
-        });
-    }
 }

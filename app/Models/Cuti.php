@@ -34,9 +34,10 @@ class Cuti extends Model
             // Jika status berubah menjadi approved
             if ($cuti->status === 'approved') {
                 $user = User::find($cuti->user_id); // Ambil data user dari user_id
+
                 if ($user) {
                     // Kurangi jatah cuti user
-                    $user->jatah_cuti -= 1;
+                    $user->jatah_cuti -= $cuti->jumlahHari;
 
                     // Pastikan jatah cuti tidak negatif
                     if ($user->jatah_cuti < 0) {

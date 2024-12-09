@@ -13,6 +13,7 @@ use App\Livewire\ExportCutiPdf;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\View;
+use Filament\Forms\Components\Actions\Action as SectionAction;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -48,11 +49,24 @@ class CutiResource extends Resource
                     Forms\Components\Textarea::make('reason')
                         ->required()
                         ->columnSpanFull(),
-                ])->disabled(fn() => Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader'])),
+                ])->disabled(function ($get) {
+                    return $get('record') && Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader']);
+                }),
         ];
 
         if (Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader'])) {
             array_push($schema, Forms\Components\Section::make('Approval')
+                ->headerActions([
+                    SectionAction::make('reject')
+                        ->label('Reject')
+                        ->color('danger')
+                        ->action(function (Cuti $record) {
+                            $record->status = 'rejected';
+                            $record->save();
+
+                            return redirect()->route('filament.internal.resources.cutis.index');
+                        }),
+                ])
                 ->schema([
                     Forms\Components\Group::make()
                         ->schema([
@@ -81,7 +95,6 @@ class CutiResource extends Resource
                         ])->columns(3),
                     Forms\Components\Textarea::make('notes')
                         ->label('Catatan')
-                        ->default('notes')
                         ->columnSpanFull()
                         ->disabled(fn() => !Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader'])), // Hanya Super Admin atau ACC Cuti yang bisa edit
                 ]));
@@ -94,7 +107,6 @@ class CutiResource extends Resource
     {
         return $table
             ->modifyQueryUsing(function (Builder $query) {
-                // $is_super_admin = Auth::user()->hasRole('super_admin'); //emang merah error tapi works
                 $is_acc = Auth::user()->hasAnyRole(['direksi', 'hrd', 'leader', 'super_admin']); //emang merah error tapi works
                 if (!$is_acc) {
                     $query->where('user_id', Auth::user()->id);
@@ -120,6 +132,11 @@ class CutiResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->alignCenter()
+                    ->icons([
+                        'heroicon-o-x-circle' => static fn($state): bool => $state === 'rejected',
+                        'heroicon-o-clock' => static fn($state): bool => $state === 'pending',
+                        'heroicon-m-check-badge' => static fn($state): bool => $state === 'approved',
+                    ])
                     ->color(fn(string $state): string => match ($state) {
                         'approved' => 'success',
                         'rejected' => 'danger',
@@ -152,6 +169,7 @@ class CutiResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('Jabatan')
                     ->relationship('user.profile.jabatan', 'name')
@@ -160,8 +178,8 @@ class CutiResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
+                // Tables\Actions\ViewAction::make()
+                //     ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
                 Action::make('cetak')
                     ->icon('heroicon-o-printer')
                     ->color('success')

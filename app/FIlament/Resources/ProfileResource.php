@@ -16,28 +16,31 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Filament\Support\Enums\FontWeight;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\Split;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Infolists\Components\Fieldset;
-use Filament\Infolists\Components\Split;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Support\Enums\FontWeight;
 use Filament\Infolists\Components\ImageEntry;
+use Illuminate\Validation\ValidationException;
 use Teguh02\IndonesiaTerritoryForms\Models\City;
 use App\Filament\Resources\ProfileResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 use Teguh02\IndonesiaTerritoryForms\Models\District;
 use Teguh02\IndonesiaTerritoryForms\Models\Province;
-
 use Teguh02\IndonesiaTerritoryForms\Models\SubDistrict;
 use Saade\FilamentAutograph\Forms\Components\SignaturePad;
 use App\Filament\Resources\ProfileResource\RelationManagers;
 use Teguh02\IndonesiaTerritoryForms\IndonesiaTerritoryForms;
+use Filament\Notifications\Notification;
 
 class ProfileResource extends Resource
 {
@@ -54,9 +57,11 @@ class ProfileResource extends Resource
                     ->schema([
                         TextInput::make('first_name')
                             ->label('Nama Depan')
+                            ->rules('alpha:ascii')
                             ->required(),
                         TextInput::make('last_name')
                             ->label('Nama Belakang')
+                            ->rules('alpha:ascii')
                             ->required(),
                         TextInput::make('email')
                             ->suffixIcon('heroicon-s-envelope')
@@ -66,11 +71,8 @@ class ProfileResource extends Resource
                             ->dehydrated(fn($state) => Auth::user()->email),
                         TextInput::make('nik')
                             ->label('NIK / Nomor Induk Kependudukan')
-                            ->mask(RawJs::make(<<<'JS'
-                        '9999 9999 9999 9999'
-                    JS))
-                            ->maxLength(19) // Panjang maksimal dengan spasi (16 angka + 3 spasi)
-                            ->placeholder('0000 0000 0000 0000')
+                            ->maxLength(16) // Panjang maksimal dengan spasi (16 angka + 3 spasi)
+                            ->minLength(16)
                             ->unique(ignoreRecord: true)
                             ->required(),
                         TextInput::make('no_hp')
@@ -84,6 +86,7 @@ class ProfileResource extends Resource
                             ->required(),
                         TextInput::make('tempat_lahir')
                             ->label('Tempat Lahir')
+                            ->rules('alpha:ascii')
                             ->required(),
                         DatePicker::make('tanggal_lahir')
                             ->label('Tanggal Lahir')
@@ -349,7 +352,6 @@ class ProfileResource extends Resource
         return [
             'index' => Pages\ListProfiles::route('/'),
             'create' => Pages\CreateProfile::route('/create'),
-            'view' => Pages\ViewProfile::route('/{record}'),
             'edit' => Pages\EditProfile::route('/{record}/edit'),
         ];
     }

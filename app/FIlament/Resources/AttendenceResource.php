@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AttendenceResource\Pages;
 use App\Filament\Resources\AttendenceResource\RelationManagers;
 use App\Filament\Resources\AttendenceResource\RelationManagers\UserRelationManager;
+use App\Filament\Resources\AttendenceResource\Widgets\AttendencesOverview;
 use App\Filament\Resources\AttendenceResource\Widgets\UserAttendencesStatisticsWidget;
 use Filament\Resources\RelationManagers\RelationManager;
 use Illuminate\Database\Eloquent\Factories\Relationship;
@@ -88,6 +89,12 @@ class AttendenceResource extends Resource
                     ->label('Nama Karyawan')
                     ->numeric()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('user.profile.jabatan.name')
+                    ->label('Jabatan')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.profile.divisi.name')
+                    ->label('Divisi')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('is_late')
                     ->label('Status')
                     ->badge()
@@ -174,7 +181,8 @@ class AttendenceResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            UserAttendencesStatisticsWidget::class
+            UserAttendencesStatisticsWidget::class,
+            AttendencesOverview::class,
         ];
     }
 }
