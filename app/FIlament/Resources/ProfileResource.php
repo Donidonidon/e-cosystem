@@ -74,7 +74,13 @@ class ProfileResource extends Resource
                             ->maxLength(16) // Panjang maksimal dengan spasi (16 angka + 3 spasi)
                             ->minLength(16)
                             ->unique(ignoreRecord: true)
-                            ->required(),
+                            ->required()
+                            ->numeric()
+                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn(string $context): bool => $context === 'create')
+                            ->mask(RawJs::make(<<<'JS'
+                        '9999999999999999'
+                    JS)),
                         TextInput::make('no_hp')
                             ->suffixIcon('heroicon-s-phone')
                             ->mask(RawJs::make(<<<'JS'
@@ -200,7 +206,8 @@ class ProfileResource extends Resource
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
                             ->storeFileNamesIn(Auth::user()->name . '-Foto-Ktp')
                             ->uploadingMessage('Uploading attachment...')
-                            ->required(),
+                            ->required()
+                            ->columnSpan(3),
                         SignaturePad::make('signature')
                             ->label(__('Tanda Tangan'))
                             ->dotSize(2.0)
@@ -210,11 +217,11 @@ class ProfileResource extends Resource
                             ->minDistance(5)
                             ->velocityFilterWeight(0.7)
                             ->required()
-                            ->exportBackgroundColor('#fff')      // Pen color on dark mode (defaults to penColor)
-                            ->exportPenColor('#333')
+                            // ->exportBackgroundColor('#fff')      // Pen color on dark mode (defaults to penColor)
+                            ->exportPenColor('#222')
                             ->dehydrated(fn($state) => filled($state))
                             ->required(fn(string $context): bool => $context === 'create'),
-                    ])->columns(2),
+                    ])->columns(4),
             ]);
     }
 
@@ -342,7 +349,8 @@ class ProfileResource extends Resource
                     ->schema([
                         Infolists\Components\ImageEntry::make('foto_ktp'),
                         Infolists\Components\ImageEntry::make('signature')
-                            ->label('Tanda Tangan'),
+                            ->label('Tanda Tangan')
+                            ->columnSpan(2),
                     ])->columns(2),
             ]);
     }

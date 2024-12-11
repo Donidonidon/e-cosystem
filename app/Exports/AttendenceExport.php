@@ -31,14 +31,19 @@ class AttendenceExport implements FromQuery, WithHeadings
             ->join('kantors', 'attendences.kantor_id', '=', 'kantors.id')
             ->join('schedules', 'attendences.user_id', '=', 'schedules.user_id')
             ->join('shifts', 'schedules.shift_id', '=', 'shifts.id')
+            ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+            ->leftJoin('divisis', 'profiles.divisi_id', '=', 'divisis.id')
+            ->leftJoin('jabatans', 'profiles.jabatan_id', '=', 'jabatans.id')
             ->select([
                 DB::raw('DATE_FORMAT(attendences.created_at, "%d-%m-%Y") as tanggal'),
                 'users.name as nama',
+                'divisis.name as divisi',
+                'jabatans.name as jabatan',
                 'kantors.name as nama_kantor',
                 'attendences.start_time',
                 'attendences.end_time',
                 'attendences.deskripsi',
-                DB::raw('CASE WHEN attendences.start_time > shifts.start_time THEN "Terlambat" ELSE "Tepat Waktu" END as keterangan_terlambat')
+                DB::raw('CASE WHEN attendences.start_time > shifts.start_time THEN "Terlambat" ELSE "Tepat Waktu" END as keterangan_terlambat'),
             ])
             ->orderBy('attendences.created_at', 'desc');
     }
@@ -48,6 +53,8 @@ class AttendenceExport implements FromQuery, WithHeadings
         return [
             'Tanggal',
             'Nama',
+            'Divisi',
+            'Jabatan',
             'Tempat Absen',
             'Jam Masuk',
             'Jam Keluar',

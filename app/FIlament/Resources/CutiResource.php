@@ -178,8 +178,8 @@ class CutiResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make()
-                //     ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
+                Tables\Actions\ViewAction::make()
+                    ->disabled(fn(Cuti $record): bool => $record->status === 'pending' || $record->status === 'rejected'),
                 Action::make('cetak')
                     ->icon('heroicon-o-printer')
                     ->color('success')
@@ -218,7 +218,6 @@ class CutiResource extends Resource
         return [
             'index' => Pages\ListCutis::route('/'),
             'create' => Pages\CreateCuti::route('/create'),
-            'view' => Pages\ViewCuti::route('/{record}'),
             'edit' => Pages\EditCuti::route('/{record}/edit'),
         ];
     }

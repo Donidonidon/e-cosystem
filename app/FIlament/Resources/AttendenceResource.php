@@ -182,7 +182,8 @@ class AttendenceResource extends Resource
     {
         return [
             UserAttendencesStatisticsWidget::class,
-            AttendencesOverview::class,
+            AttendencesOverview::class
+
         ];
     }
 }

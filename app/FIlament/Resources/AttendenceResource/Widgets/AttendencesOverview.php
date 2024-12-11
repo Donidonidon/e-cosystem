@@ -2,70 +2,49 @@
 
 namespace App\Filament\Resources\AttendenceResource\Widgets;
 
+use App\Models\User;
 use Filament\Tables;
 use App\Models\Attendence;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 use Filament\Widgets\TableWidget as BaseWidget;
 
 class AttendencesOverview extends BaseWidget
 {
+    protected int | string | array $columnSpan = 'full';
+    protected static ?string $heading = 'Daftar Karyawan Tidak Hadir';
+
     public function table(Table $table): Table
     {
         return $table
             ->query(
-                Attendence::whereDate('created_at', today())->whereNull('start_time'),
+                //user yang belum absen
+                User::whereDoesntHave('attendences', function ($query) {
+                    $query->whereDate('created_at', today());
+                }),
             )
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Tanggal')
-                    ->date()
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('name')
                     ->label('Nama Karyawan')
-                    ->numeric()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('user.profile.jabatan.name')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('profile.jabatan.name')
                     ->label('Jabatan')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user.profile.divisi.name')
+                Tables\Columns\TextColumn::make('profile.divisi.name')
                     ->label('Divisi')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('is_late')
-                    ->label('Status')
-                    ->badge()
-                    ->getStateUsing(function ($record) {
-                        return $record->isLate() ? 'Terlambat' : 'Tepat Waktu';
-                    })
-                    ->color(fn(string $state): string => match ($state) {
-                        'Tepat Waktu' => 'success',
-                        'Terlambat' => 'danger',
-                    })
-                    ->description(fn(Attendence $record): string => $record->onTimeOrLate() ?: ''),
-                Tables\Columns\TextColumn::make('kantor.name')
-                    ->label('Absen di Kantor')
+                Tables\Columns\TextColumn::make('profile.kantor.name')
+                    ->label('Kantor')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'WFA' => 'info',
                         default => 'gray',
                     }),
-                Tables\Columns\TextColumn::make('start_time')
-                    ->label('Waktu Datang'),
-                Tables\Columns\TextColumn::make('end_time')
-                    ->label('Waktu Pulang'),
-                Tables\Columns\TextColumn::make('work_duration')
-                    ->label('Durasi Kerja')
-                    ->getStateUsing(function ($record) {
-                        return $record->workDuration();
-                    }),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ]);
+    }
+    public static function canView(): bool
+    {
+        return Auth::user()->hasAnyRole(['direksi', 'hrd', 'super_admin']);
     }
 }
