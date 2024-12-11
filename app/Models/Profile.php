@@ -39,7 +39,8 @@ class Profile extends Model
         'kantor_id',
         'foto_ktp',
         'signature',
-        'profile_pic'
+        'profile_pic',
+        'is_completed'
     ];
 
     public function user()

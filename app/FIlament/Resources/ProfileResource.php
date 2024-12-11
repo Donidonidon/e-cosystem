@@ -57,11 +57,9 @@ class ProfileResource extends Resource
                     ->schema([
                         TextInput::make('first_name')
                             ->label('Nama Depan')
-                            ->rules('alpha:ascii')
                             ->required(),
                         TextInput::make('last_name')
                             ->label('Nama Belakang')
-                            ->rules('alpha:ascii')
                             ->required(),
                         TextInput::make('email')
                             ->suffixIcon('heroicon-s-envelope')
@@ -92,7 +90,6 @@ class ProfileResource extends Resource
                             ->required(),
                         TextInput::make('tempat_lahir')
                             ->label('Tempat Lahir')
-                            ->rules('alpha:ascii')
                             ->required(),
                         DatePicker::make('tanggal_lahir')
                             ->label('Tanggal Lahir')

@@ -5,10 +5,19 @@ namespace App\Providers\Filament;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
+use App\Models\Profile;
 use Filament\PanelProvider;
+use Filament\Pages\Dashboard;
+use Filament\Facades\Filament;
+use App\Filament\Pages\Settings;
 use Filament\Support\Colors\Color;
+use Illuminate\Support\Facades\Auth;
+use Filament\Navigation\NavigationItem;
 use App\Filament\Pages\Auth\EditProfile;
+use App\Filament\Resources\UserResource;
 use Filament\Http\Middleware\Authenticate;
+use Filament\Navigation\NavigationBuilder;
+use App\Filament\Resources\AttendenceResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -49,7 +58,7 @@ class InternalPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                // Widgets\FilamentInfoWidget::class,
+                // AttendenceResource\Widgets\AttendencesOverview::class,
             ])
             ->middleware([
                 EncryptCookies::class,

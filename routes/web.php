@@ -23,3 +23,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/login', function () {
     return redirect('/internal/login');
 })->name('login');
+Route::get('/register', function () {
+    return redirect('/internal/register');
+})->name('register');

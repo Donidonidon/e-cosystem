@@ -30,6 +30,8 @@ class CreateProfile extends CreateRecord
 
             // Simpan path file ke kolom signature
             $data['signature'] = $fileName;
+
+            $data['is_completed'] = true;
         }
 
         $data['user_id'] = Auth::user()->id;

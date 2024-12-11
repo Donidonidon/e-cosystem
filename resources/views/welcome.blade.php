@@ -121,6 +121,31 @@
                                         Contact
                                     </a>
                                 </li>
+                                @if (Route::has('login'))
+                                    @auth
+                                        <li class="group relative">
+                                            <a href="{{ route('internal') }}"
+                                                class="bg-secondary text-white rounded-[10px] text-center px-1 mx-8 flex py-2 font-medium group-hover:text-primary lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:group-hover:opacity-70 xl:ml-10 lg:hidden">
+                                                Dasboard
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li class="group relative">
+                                            <a href="{{ route('login') }}"
+                                                class="bg-secondary text-white rounded-[10px] text-center px-1 mx-8 flex py-2 font-medium group-hover:text-primary lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:group-hover:opacity-70 xl:ml-10 lg:hidden">
+                                                Login
+                                            </a>
+                                        </li>
+                                        @if (Route::has('register'))
+                                            <li class="group relative">
+                                                <a href="{{ route('register') }}"
+                                                    class="bg-secondary text-white rounded-[10px] text-center px-1 my-1 mx-8 flex py-2 font-medium group-hover:text-primary lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:group-hover:opacity-70 xl:ml-10 lg:hidden">
+                                                    Register
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endauth
+                                @endif
                             </ul>
                         </nav>
                     </div>
@@ -169,8 +194,8 @@
                         @if (Route::has('login'))
                             <div class="hidden sm:flex">
                                 @auth
-                                    <a href="{{ url('/') }}"
-                                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                                    <a href="{{ url('/internal') }}"
+                                        class="font-semibold text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                                 @else
                                     <a href="{{ route('login') }}"
                                         class="loginBtn px-[22px] py-2 text-base font-medium text-white hover:opacity-70">Log
@@ -218,7 +243,8 @@
                                                         <h1 class="ml4">
                                                             <span class="letters letters-1">#OneTeamOneEnergy</span>
                                                             <span class="letters letters-2">#VisionReality</span>
-                                                            <span class="letters letters-3">#VisionSustainability</span>
+                                                            <span
+                                                                class="letters letters-3">#VisionSustainability</span>
                                                             <span class="letters letters-4">#ResiliensiBPR</span>
                                                         </h1>
                                                     </div>
@@ -352,157 +378,6 @@
 
     <!-- ====== Hero Section End -->
 
-    <!-- ====== Hero Section Start -->
-    {{-- <div id="home" class="relative bg-no-repeat overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]"
-        style="background-image: url({{ asset('assets/images/hero/bg-hero.jpg') }}); background-repeat: no-repeat; background-position: center;">
-        <div class="container justify-content-center">
-            <div class="-mx-4 flex flex-wrap items-center">
-                <div class="w-full px-4">
-                    <div class="hero-content wow fadeInUp mx-auto max-w-[780px] text-center" data-wow-delay=".2s">
-                        <h1
-                            class="mb-6 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]">
-                            Open-Source Web Template for SaaS, Startup, Apps, and More
-                        </h1>
-                        <p
-                            class="mx-auto mb-9 max-w-[600px] text-base font-medium text-white sm:text-lg sm:leading-[1.44]">
-                            Multidisciplinary Web Template Built with Your Favourite
-                            Technology - HTML Bootstrap, Tailwind and React NextJS.
-                        </p>
-                        <ul class="mb-10 flex flex-wrap items-center justify-center gap-5">
-                            <li>
-                                <a href="https://links.tailgrids.com/play-download"
-                                    class="inline-flex items-center justify-center rounded-md bg-white px-7 py-[14px] text-center text-base font-medium text-dark shadow-1 transition duration-300 ease-in-out hover:bg-gray-2 hover:text-body-color">
-                                    Download Now
-                                </a>
-                            </li>
-                        </ul>
-                        <div>
-                            <p class="mb-4 text-center text-base font-medium text-white">
-                                Built with latest technology
-                            </p>
-                            <div class="wow fadeInUp flex items-center justify-center gap-4 text-center"
-                                data-wow-delay=".3s">
-                                <a href="https://github.com/uideck/play-bootstrap/"
-                                    class="text-white/60 duration-300 ease-in-out hover:text-white" target="_blank">
-                                    <svg class="fill-current" width="41" height="32" viewBox="0 0 41 32"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <mask id="mask0_2005_10788" style="mask-type: luminance"
-                                            maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="32">
-                                            <path d="M0.521393 0.0454102H40.5214V31.9174H0.521393V0.0454102Z" />
-                                        </mask>
-                                        <g mask="url(#mask0_2005_10788)">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M8.82951 0.048584C6.54719 0.048584 4.85835 2.04626 4.93395 4.21266C5.00655 6.29398 4.91223 8.98962 4.23366 11.1879C3.55264 13.3923 2.4017 14.7893 0.521393 14.9686V16.993C2.4017 17.1727 3.55264 18.5689 4.23358 20.7737C4.91223 22.9719 5.00647 25.6676 4.93387 27.7489C4.85827 29.915 6.54711 31.913 8.82983 31.913H32.2163C34.4987 31.913 36.1872 29.9153 36.1116 27.7489C36.039 25.6676 36.1333 22.9719 36.8119 20.7737C37.4929 18.5689 38.641 17.1721 40.5214 16.993V14.9686C38.6411 14.7889 37.493 13.3927 36.8119 11.1879C36.1332 8.9899 36.039 6.29398 36.1116 4.21266C36.1872 2.04654 34.4987 0.048584 32.2163 0.048584H8.82951ZM27.6401 19.6632C27.6401 22.6463 25.415 24.4554 21.7224 24.4554H15.4366C15.2568 24.4554 15.0844 24.3839 14.9572 24.2568C14.8301 24.1297 14.7587 23.9572 14.7587 23.7774V8.18422C14.7587 8.00442 14.8301 7.83194 14.9572 7.70482C15.0844 7.57766 15.2568 7.50626 15.4366 7.50626H21.6866C24.7656 7.50626 26.7863 9.17406 26.7863 11.7347C26.7863 13.5319 25.427 15.1409 23.6952 15.4228V15.5165C26.0526 15.7751 27.6401 17.408 27.6401 19.6632ZM21.037 9.65538H17.453V14.7179H20.4716C22.8052 14.7179 24.092 13.7782 24.092 12.0986C24.0917 10.5245 22.9855 9.65538 21.037 9.65538ZM17.453 16.7265V22.3055H21.1689C23.5986 22.3055 24.8856 21.3306 24.8856 19.4984C24.8856 17.6663 23.5625 16.7263 21.0126 16.7263L17.453 16.7265Z" />
-                                        </g>
-                                    </svg>
-                                </a>
-
-                                <a href="https://github.com/TailGrids/play-tailwind/"
-                                    class="text-white/60 duration-300 ease-in-out hover:text-white" target="_blank">
-                                    <svg class="fill-current" width="41" height="26" viewBox="0 0 41 26"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <mask id="mask0_2005_10783" style="mask-type: luminance"
-                                            maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="26">
-                                            <path d="M0.521393 0.949463H40.5214V25.0135H0.521393V0.949463Z" />
-                                        </mask>
-                                        <g mask="url(#mask0_2005_10783)">
-                                            <path
-                                                d="M20.5214 0.980713C15.1882 0.980713 11.8546 3.64743 10.5214 8.98071C12.5214 6.31399 14.8546 5.31399 17.5214 5.98071C19.043 6.36103 20.1302 7.46495 21.3342 8.68667C23.295 10.6771 25.5642 12.9807 30.5214 12.9807C35.8546 12.9807 39.1882 10.314 40.5214 4.98071C38.5214 7.64743 36.1882 8.64743 33.5214 7.98071C31.9998 7.60039 30.9126 6.49651 29.7086 5.27479C27.7478 3.28431 25.4786 0.980713 20.5214 0.980713ZM10.5214 12.9807C5.18819 12.9807 1.85459 15.6474 0.521393 20.9807C2.52139 18.314 4.85459 17.314 7.52139 17.9807C9.04299 18.361 10.1302 19.465 11.3342 20.6867C13.295 22.6771 15.5642 24.9807 20.5214 24.9807C25.8546 24.9807 29.1882 22.314 30.5214 16.9807C28.5214 19.6474 26.1882 20.6474 23.5214 19.9807C21.9998 19.6004 20.9126 18.4965 19.7086 17.2748C17.7478 15.2843 15.4786 12.9807 10.5214 12.9807Z" />
-                                        </g>
-                                    </svg>
-                                </a>
-
-                                <a href="https://github.com/NextJSTemplates/play-nextjs"
-                                    class="text-white/60 duration-300 ease-in-out hover:text-white" target="_blank">
-                                    <svg class="fill-current" width="41" height="36" viewBox="0 0 41 36"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M40.5214 17.9856C40.5214 15.3358 37.203 12.8245 32.1154 11.2673C33.2894 6.08177 32.7678 1.95622 30.4686 0.63539C29.9386 0.325566 29.3186 0.178806 28.6422 0.178806V1.99699C29.017 1.99699 29.3186 2.07037 29.5714 2.20897C30.6802 2.84493 31.1614 5.26645 30.7862 8.38101C30.6966 9.14741 30.5498 9.95457 30.3706 10.7781C28.7726 10.3867 27.0278 10.0851 25.1934 9.88937C24.0926 8.38101 22.951 7.01125 21.8014 5.81273C24.4594 3.34229 26.9542 1.98883 28.6502 1.98883V0.170654C26.4082 0.170654 23.473 1.7687 20.505 4.54081C17.5374 1.78501 14.6022 0.203266 12.3598 0.203266V2.02145C14.0478 2.02145 16.5506 3.36673 19.2086 5.82089C18.0674 7.01941 16.9258 8.38101 15.8414 9.88937C13.9986 10.0851 12.2538 10.3867 10.6558 10.7862C10.4686 9.97089 10.3298 9.18001 10.2318 8.42177C9.84859 5.30721 10.3218 2.88569 11.4222 2.24157C11.667 2.09483 11.985 2.0296 12.3598 2.0296V0.211422C11.675 0.211422 11.0554 0.358178 10.5174 0.668006C8.22619 1.98883 7.71259 6.10626 8.89499 11.2754C3.82339 12.8409 0.521393 15.3439 0.521393 17.9856C0.521393 20.6354 3.8398 23.1466 8.9274 24.7039C7.7534 29.8894 8.27499 34.0149 10.5742 35.3358C11.1042 35.6456 11.7242 35.7923 12.409 35.7923C14.651 35.7923 17.5862 34.1943 20.5542 31.4222C23.5218 34.178 26.457 35.7597 28.699 35.7597C29.3842 35.7597 30.0038 35.613 30.5418 35.3031C32.833 33.9823 33.3466 29.8649 32.1642 24.6957C37.2194 23.1385 40.5214 20.6273 40.5214 17.9856ZM29.9058 12.5473C29.6042 13.5991 29.229 14.6835 28.805 15.7679C28.471 15.1156 28.1202 14.4634 27.737 13.8111C27.3622 13.1588 26.9626 12.5229 26.563 11.9032C27.7206 12.0745 28.8378 12.2864 29.9058 12.5473ZM26.1718 21.2306C25.5358 22.3313 24.8834 23.3749 24.2066 24.3451C22.9918 24.4511 21.7606 24.5082 20.5214 24.5082C19.2902 24.5082 18.059 24.4511 16.8526 24.3533C16.1758 23.3831 15.5154 22.3476 14.8794 21.2551C14.2598 20.187 13.697 19.1026 13.1834 18.01C13.689 16.9175 14.2598 15.8249 14.871 14.7569C15.507 13.6562 16.1594 12.6126 16.8362 11.6423C18.051 11.5363 19.2822 11.4793 20.5214 11.4793C21.7526 11.4793 22.9838 11.5363 24.1902 11.6342C24.867 12.6044 25.5274 13.6399 26.1634 14.7324C26.783 15.8005 27.3458 16.8849 27.8594 17.9774C27.3458 19.07 26.783 20.1625 26.1718 21.2306ZM28.805 20.1707C29.2454 21.2632 29.6206 22.3557 29.9302 23.4157C28.8622 23.6766 27.737 23.8967 26.571 24.0679C26.9706 23.4401 27.3702 22.796 27.7454 22.1356C28.1202 21.4833 28.471 20.8229 28.805 20.1707ZM20.5378 28.8702C19.7794 28.0875 19.021 27.2151 18.271 26.2611C19.005 26.2938 19.755 26.3182 20.5134 26.3182C21.2798 26.3182 22.0378 26.3019 22.7798 26.2611C22.0462 27.2151 21.2878 28.0875 20.5378 28.8702ZM14.4718 24.0679C13.3138 23.8967 12.197 23.6847 11.129 23.4238C11.4306 22.3721 11.8054 21.2877 12.2294 20.2033C12.5638 20.8555 12.9142 21.5078 13.2974 22.1601C13.6806 22.8123 14.0722 23.4483 14.4718 24.0679ZM20.497 7.10093C21.255 7.88365 22.0134 8.75605 22.7634 9.70998C22.0298 9.67737 21.2798 9.65293 20.5214 9.65293C19.755 9.65293 18.9966 9.66922 18.2546 9.70998C18.9886 8.75605 19.747 7.88365 20.497 7.10093ZM14.4634 11.9032C14.0642 12.531 13.6646 13.1751 13.2894 13.8356C12.9142 14.4878 12.5638 15.1401 12.2294 15.7923C11.7894 14.6998 11.4142 13.6073 11.1042 12.5473C12.1726 12.2946 13.2974 12.0745 14.4634 11.9032ZM7.08459 22.1111C4.19859 20.88 2.33139 19.2657 2.33139 17.9856C2.33139 16.7055 4.19859 15.083 7.08459 13.86C7.78579 13.5583 8.55219 13.2893 9.34339 13.0365C9.80779 14.6346 10.4194 16.2979 11.1778 18.0019C10.4278 19.6978 9.82419 21.3529 9.36779 22.9428C8.56059 22.69 7.79419 22.4128 7.08459 22.1111ZM11.4714 33.7622C10.3626 33.1262 9.8814 30.7047 10.2566 27.5901C10.3462 26.8237 10.493 26.0166 10.6722 25.1931C12.2702 25.5844 14.015 25.8861 15.8494 26.0818C16.9502 27.5901 18.0918 28.9599 19.2414 30.1584C16.5834 32.6289 14.0886 33.9823 12.3926 33.9823C12.0258 33.9742 11.7158 33.9008 11.4714 33.7622ZM30.811 27.5494C31.1942 30.6639 30.721 33.0855 29.6206 33.7296C29.3758 33.8763 29.0578 33.9415 28.683 33.9415C26.995 33.9415 24.4922 32.5963 21.8342 30.1421C22.9754 28.9436 24.117 27.582 25.2014 26.0736C27.0442 25.8779 28.789 25.5763 30.387 25.1768C30.5742 26.0003 30.721 26.7911 30.811 27.5494ZM33.9498 22.1111C33.2486 22.4128 32.4822 22.6819 31.6914 22.9346C31.2266 21.3366 30.615 19.6733 29.857 17.9693C30.607 16.2734 31.2102 14.6183 31.667 13.0284C32.4742 13.2811 33.2406 13.5583 33.9582 13.86C36.8442 15.0912 38.7114 16.7055 38.7114 17.9856C38.7034 19.2657 36.8362 20.8881 33.9498 22.1111Z" />
-                                        <path
-                                            d="M20.5134 21.7133C22.5714 21.7133 24.2394 20.0451 24.2394 17.9873C24.2394 15.9294 22.5714 14.2612 20.5134 14.2612C18.4558 14.2612 16.7874 15.9294 16.7874 17.9873C16.7874 20.0451 18.4558 21.7133 20.5134 21.7133Z" />
-                                    </svg>
-                                </a>
-
-                                <a href="https://github.com/TailGrids/play-astro/"
-                                    class="text-white/60 duration-300 ease-in-out hover:text-white" target="_blank">
-                                    <svg class="mt-0.5 fill-current" width="30" height="38"
-                                        viewBox="0 0 30 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_2412_2096)">
-                                            <path
-                                                d="M9.54022 32.0145C7.86872 30.4866 7.38074 27.2761 8.07717 24.9502C9.28468 26.4166 10.9578 26.8812 12.6908 27.1434C15.3662 27.548 17.9937 27.3967 20.479 26.1739C20.7633 26.0338 21.0261 25.8477 21.3368 25.6591C21.57 26.3357 21.6306 27.0187 21.5492 27.7139C21.3511 29.407 20.5086 30.7148 19.1685 31.7062C18.6326 32.1027 18.0656 32.4572 17.5121 32.8311C15.8119 33.9803 15.3519 35.3278 15.9907 37.2877C16.0059 37.3358 16.0195 37.3835 16.0538 37.5C15.1857 37.1114 14.5516 36.5456 14.0684 35.8018C13.5581 35.017 13.3153 34.1486 13.3026 33.209C13.2962 32.7518 13.2962 32.2905 13.2347 31.8397C13.0845 30.7407 12.5686 30.2486 11.5967 30.2203C10.5992 30.1912 9.81018 30.8078 9.60094 31.779C9.58497 31.8535 9.5618 31.9271 9.53863 32.0137L9.54022 32.0145Z" />
-                                            <path
-                                                d="M0 24.5627C0 24.5627 4.94967 22.1515 9.91317 22.1515L13.6555 10.5697C13.7956 10.0096 14.2046 9.62894 14.6665 9.62894C15.1283 9.62894 15.5374 10.0096 15.6775 10.5697L19.4198 22.1515C25.2984 22.1515 29.333 24.5627 29.333 24.5627C29.333 24.5627 20.9256 1.65922 20.9092 1.61326C20.6679 0.936116 20.2605 0.5 19.7113 0.5H9.62256C9.07337 0.5 8.68245 0.936116 8.42473 1.61326C8.40654 1.65835 0 24.5627 0 24.5627Z" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_2412_2096">
-                                                <rect width="29.3925" height="37" transform="translate(0 0.5)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </a>
-
-                                <a href="https://github.com/NextJSTemplates/play-nextjs"
-                                    class="text-white/60 duration-300 ease-in-out hover:text-white" target="_blank">
-                                    <svg class="fill-current" width="41" height="40" viewBox="0 0 41 40"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M19.1914 0.0107542C19.1054 0.0185659 18.8322 0.0459068 18.5862 0.0654364C12.911 0.577104 7.59499 3.63931 4.22819 8.34588C2.35339 10.9628 1.15419 13.9313 0.700995 17.0755C0.540995 18.173 0.521393 18.4972 0.521393 19.9854C0.521393 21.4735 0.540995 21.7977 0.700995 22.8952C1.78699 30.3984 7.12619 36.7025 14.3678 39.0382C15.6646 39.4561 17.0314 39.7412 18.5862 39.9131C19.1914 39.9795 21.8082 39.9795 22.4138 39.9131C25.097 39.6163 27.3702 38.9523 29.6122 37.8078C29.9562 37.6321 30.0226 37.5852 29.9754 37.5462C29.9442 37.5227 28.4798 35.5581 26.7218 33.1833L23.527 28.8673L19.5234 22.9421C17.3206 19.6846 15.5082 17.0208 15.4926 17.0208C15.477 17.0169 15.4614 19.6495 15.4534 22.864C15.4418 28.4924 15.4378 28.7189 15.3678 28.8517C15.2662 29.0431 15.1878 29.1212 15.0238 29.2071C14.899 29.2696 14.7894 29.2813 14.1998 29.2813H13.5242L13.3442 29.1681C13.227 29.0938 13.1414 28.9962 13.0826 28.8829L13.0006 28.7072L13.0086 20.8759L13.0202 13.0407L13.1414 12.8884C13.2038 12.8064 13.3366 12.7009 13.4302 12.6502C13.5906 12.572 13.653 12.5642 14.3286 12.5642C15.1254 12.5642 15.2582 12.5955 15.4654 12.822C15.5238 12.8845 17.6914 16.1498 20.285 20.083C22.8786 24.0162 26.425 29.3868 28.167 32.0232L31.331 36.8158L31.491 36.7103C32.909 35.7885 34.4086 34.4761 35.5962 33.1091C38.123 30.207 39.7518 26.6683 40.2986 22.8952C40.459 21.7977 40.4786 21.4735 40.4786 19.9854C40.4786 18.4972 40.459 18.173 40.2986 17.0755C39.213 9.57232 33.8738 3.26825 26.6322 0.93254C25.355 0.518516 23.9958 0.233389 22.4722 0.0615304C22.0974 0.0224718 19.5158 -0.0204928 19.1914 0.0107542ZM27.3702 12.0955C27.5578 12.1892 27.7102 12.3689 27.765 12.5564C27.7962 12.658 27.8038 14.8296 27.7962 19.7237L27.7842 26.7464L26.5462 24.8482L25.3042 22.9499V17.845C25.3042 14.5445 25.3198 12.6892 25.343 12.5994C25.4058 12.3806 25.5422 12.2088 25.7298 12.1072C25.8902 12.0252 25.9486 12.0174 26.5618 12.0174C27.1398 12.0174 27.2414 12.0252 27.3702 12.0955Z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full">
-            <div class="wow fadeInUp relative z-10 mx-auto" data-wow-delay=".25s">
-                <div class="">
-                    <!--Waves Container-->
-                    <div>
-                        <svg class="waves" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28"
-                            preserveAspectRatio="none" shape-rendering="auto">
-                            <defs>
-                                <path id="gentle-wave"
-                                    d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                            </defs>
-                            <g class="parallax">
-                                <use xlink:href="#gentle-wave" x="48" y="0" class="wave-1" />
-                                <use xlink:href="#gentle-wave" x="48" y="3" class="wave-2" />
-                                <use xlink:href="#gentle-wave" x="48" y="5" class="wave-3" />
-                                <use xlink:href="#gentle-wave" x="48" y="7" class="wave-4" />
-                            </g>
-                        </svg>
-                    </div>
-                    <!--Waves end-->
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- ====== Hero Section End -->
-
-
-    {{-- <div class="content flex dark:bg-dark">
-        <div class="w-full px-4 jusify-center items-center">
-            <div class="hero-content wow fadeInUp mx-auto max-w-[780px] text-center" data-wow-delay=".2s">
-                <h1
-                    class="mt-12 text-3xl font-bold leading-snug text-hero sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]">
-                    Bersinergi Menuju Orbit Prestasi
-                </h1>
-                <div class="max-w-full">
-                    <h1 class="ml4 text-dark dark:text-white">
-                        <span class="letters letters-1">#OneTeamOneEnergy</span>
-                        <span class="letters letters-2">#VisionReality</span>
-                        <span class="letters letters-3">#VisionSustainability</span>
-                        <span class="letters letters-4">#ResiliensiBPR</span>
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <!-- ====== Features Section Start -->
     <section class="pb-8 pt-20 dark:bg-dark lg:pb-[70px] lg:pt-[120px]">
         <div class="container">
@@ -623,40 +498,6 @@
                         </a>
                     </div>
                 </div>
-                {{-- <div class="w-full px-4 md:w-1/2 lg:w-1/4">
-                    <div class="wow fadeInUp group mb-12" data-wow-delay=".25s">
-                        <div
-                            class="relative z-10 mb-10 flex h-[70px] w-[70px] items-center justify-center rounded-[14px] bg-primary">
-                            <span
-                                class="absolute left-0 top-0 -z-[1] mb-8 flex h-[70px] w-[70px] rotate-[25deg] items-center justify-center rounded-[14px] bg-primary bg-opacity-20 duration-300 group-hover:rotate-45"></span>
-                            <svg width="37" height="37" viewBox="0 0 37 37" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12.355 2.0614H5.21129C3.29879 2.0614 1.72379 3.6364 1.72379 5.5489V12.6927C1.72379 14.6052 3.29879 16.1802 5.21129 16.1802H12.355C14.2675 16.1802 15.8425 14.6052 15.8425 12.6927V5.60515C15.8988 3.6364 14.3238 2.0614 12.355 2.0614ZM13.3675 12.7489C13.3675 13.3114 12.9175 13.7614 12.355 13.7614H5.21129C4.64879 13.7614 4.19879 13.3114 4.19879 12.7489V5.60515C4.19879 5.04265 4.64879 4.59265 5.21129 4.59265H12.355C12.9175 4.59265 13.3675 5.04265 13.3675 5.60515V12.7489Z"
-                                    fill="white" />
-                                <path
-                                    d="M31.0863 2.0614H23.9425C22.03 2.0614 20.455 3.6364 20.455 5.5489V12.6927C20.455 14.6052 22.03 16.1802 23.9425 16.1802H31.0863C32.9988 16.1802 34.5738 14.6052 34.5738 12.6927V5.60515C34.5738 3.6364 32.9988 2.0614 31.0863 2.0614ZM32.0988 12.7489C32.0988 13.3114 31.6488 13.7614 31.0863 13.7614H23.9425C23.38 13.7614 22.93 13.3114 22.93 12.7489V5.60515C22.93 5.04265 23.38 4.59265 23.9425 4.59265H31.0863C31.6488 4.59265 32.0988 5.04265 32.0988 5.60515V12.7489Z"
-                                    fill="white" />
-                                <path
-                                    d="M12.355 20.0051H5.21129C3.29879 20.0051 1.72379 21.5801 1.72379 23.4926V30.6364C1.72379 32.5489 3.29879 34.1239 5.21129 34.1239H12.355C14.2675 34.1239 15.8425 32.5489 15.8425 30.6364V23.5489C15.8988 21.5801 14.3238 20.0051 12.355 20.0051ZM13.3675 30.6926C13.3675 31.2551 12.9175 31.7051 12.355 31.7051H5.21129C4.64879 31.7051 4.19879 31.2551 4.19879 30.6926V23.5489C4.19879 22.9864 4.64879 22.5364 5.21129 22.5364H12.355C12.9175 22.5364 13.3675 22.9864 13.3675 23.5489V30.6926Z"
-                                    fill="white" />
-                                <path
-                                    d="M31.0863 20.0051H23.9425C22.03 20.0051 20.455 21.5801 20.455 23.4926V30.6364C20.455 32.5489 22.03 34.1239 23.9425 34.1239H31.0863C32.9988 34.1239 34.5738 32.5489 34.5738 30.6364V23.5489C34.5738 21.5801 32.9988 20.0051 31.0863 20.0051ZM32.0988 30.6926C32.0988 31.2551 31.6488 31.7051 31.0863 31.7051H23.9425C23.38 31.7051 22.93 31.2551 22.93 30.6926V23.5489C22.93 22.9864 23.38 22.5364 23.9425 22.5364H31.0863C31.6488 22.5364 32.0988 22.9864 32.0988 23.5489V30.6926Z"
-                                    fill="white" />
-                            </svg>
-                        </div>
-                        <h4 class="mb-3 text-xl font-bold text-dark dark:text-white">
-                            All Essential Elements
-                        </h4>
-                        <p class="mb-8 text-body-color dark:text-dark-6 lg:mb-9">
-                            Lorem Ipsum is simply dummy text of the printing and industry.
-                        </p>
-                        <a href="javascript:void(0)"
-                            class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
-                            Learn More
-                        </a>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
@@ -1507,7 +1348,7 @@
                 </div>
             </div>
 
-            <div class="-m-5">
+            <div class="">
                 <div class="swiper testimonial-carousel common-carousel p-5">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -2096,7 +1937,7 @@
     <!-- ====== Made With Button Start -->
     <a target="_blank" rel="nofollow noopener"
         class="fixed top-1/2 left-0 z-[999] items-center gap-[10px] rounded-pengaduan px-2 py-2"
-        href="https://tailgrids.com/">
+        href="https://api.whatsapp.com/send?phone=6282331113332">
         <img class="img-pengaduan" src="{{ asset('assets/images/whatsapp.png') }}"
             alt="layanan pengaduan bpr putera dana">
         <span class="font-medium text-white text-pengaduan">

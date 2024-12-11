@@ -33,8 +33,6 @@ class Presensi extends Component
     {
 
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
-        $kantorTugasID = $schedule->kantor->id; //ID kantor tugas
-        // $kantorTugas = $schedule->kantor; //kantor tugas
         $kantor = Kantor::all(); //selain kantor tugas
 
         $attendance = Attendence::where('user_id', Auth::user()->id)
@@ -60,7 +58,6 @@ class Presensi extends Component
             'latitude' => 'required',
             'longitude' => 'required',
             'kantorID' => 'required',
-            'deskripsi' => 'required_if:isWfa,true|min:3',
         ]);
 
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();

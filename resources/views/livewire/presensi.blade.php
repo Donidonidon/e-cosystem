@@ -35,8 +35,8 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                    <form class="row g-3 mt-3" wire:submit="store" enctype="multipart/form-data">
-                        <!-- Rounded switch -->
+                    <form class="row g-3 mt-3" wire:submit.prevent="store" enctype="multipart/form-data">
+                        <!-- Switch Absen Diluar Kantor -->
                         <div class="p-4">
                             @if ($isWfa)
                                 <label class="inline-flex items-center cursor-pointer">
@@ -48,14 +48,15 @@
                                 </label>
                             @endif
 
+                            <!-- Penjelasan untuk Absen di Luar Kantor -->
                             @if ($isWfa)
                                 <div class="mt-4">
                                     <div class="flex flex-col space-y-2">
-                                        <label for="deskripsi" class="text-sm font-medium text-gray-700">Your
-                                            Message</label>
+                                        <label for="deskripsi"
+                                            class="text-sm font-medium text-gray-700">Deskripsi</label>
                                         <textarea id="deskripsi" wire:model="deskripsi" rows="4"
                                             class="text-sm font-medium p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800"
-                                            placeholder="Berikan penjelasan mengapa Anda absen di luar kantor yaa ;)"></textarea>
+                                            placeholder="Berikan penjelasan mengapa Anda absen di luar kantor."></textarea>
                                         @error('deskripsi')
                                             <span class="text-sm text-red-500">{{ $message }}</span>
                                         @enderror
@@ -64,13 +65,17 @@
                             @endif
                         </div>
 
+                        <!-- Tombol Tag Lokasi -->
                         <button type="button" onclick="tagLocation()"
                             class="px-4 py-2 bg-blue-500 text-white rounded">Tag Location</button>
+
+                        <!-- Tombol Submit -->
                         @if ($insideRadius || $isWfa)
                             <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">Submit
                                 Presensi</button>
                         @endif
                     </form>
+
                 </div>
 
             </div>
@@ -131,43 +136,34 @@
 
                         if (isWithinRadius(lat, lng, kantorLatLng, radius)) {
                             isInsideAnyCircle = true;
-                            kantorName = kantor.name; // Simpan nama kantor
-                            kantorID = kantor.id; // Simpan id kantor
+                            component.set('insideRadius', true);
+                            component.set('isWfa', false); // Tidak WFA jika di dalam radius kantor
+                            component.set('latitude', lat);
+                            component.set('longitude', lng);
+                            component.set('kantorID', kantor.id);
+                            component.set('kantorName', kantor.name);
                         }
                     });
 
-                    if (isInsideAnyCircle) {
-                        component.set('insideRadius', true);
-                        component.set('isWfa', false);
-                        component.set('latitude', lat);
-                        component.set('longitude', lng);
-                        component.set('kantorID', kantorID);
-                        component.set('kantorName', kantorName);
-                    } else {
-                        // component.set('insideRadius', false);
+                    // Jika tidak ada dalam radius kantor
+                    if (!isInsideAnyCircle) {
                         alert('Anda berada di luar radius kantor.');
                         component.set('isWfa', true);
+                        component.set('insideRadius', false); // Pastikan diatur false
                         component.set('latitude', lat);
                         component.set('longitude', lng);
-                        component.set('kantorID', 5);
+                        component.set('kantorID', 5); // Default untuk WFA
                         component.set('kantorName', 'WFA');
                     }
                 });
             } else {
-                alert('Tidak bisa mendapatkan lokasi.');
+                alert('Geolocation tidak didukung di browser Anda.');
             }
         }
 
         function isWithinRadius(lat, lng, center, radius) {
-            const is_wfa = {{ $schedule->is_wfa }}
-            if (is_wfa) {
-                component.set('isWfa', true);
-                return true;
-            } else {
-                let distance = map.distance([lat, lng], center);
-                return distance <= radius;
-            }
-
+            let distance = map.distance([lat, lng], center); // Menghitung jarak
+            return distance <= radius;
         }
     </script>
 </div>

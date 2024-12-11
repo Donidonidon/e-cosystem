@@ -109,14 +109,21 @@ class AttendenceResource extends Resource
                 Tables\Columns\TextColumn::make('kantor.name')
                     ->label('Absen di Kantor')
                     ->badge()
+                    ->icons(['heroicon-s-home'])
                     ->color(fn(string $state): string => match ($state) {
-                        'WFA' => 'info',
-                        default => 'gray',
+                        'Kantor Pusat' => 'info',
+                        'Kantor Cabang' => 'yellow',
+                        'Kantor Kas Tlogomas' => 'orange',
+                        'Kantor Kas Pakisaji' => 'lightOrange',
+                        'WFA' => 'grey',
+                        default => 'info',
                     }),
                 Tables\Columns\TextColumn::make('start_time')
                     ->label('Waktu Datang'),
                 Tables\Columns\TextColumn::make('end_time')
                     ->label('Waktu Pulang'),
+                Tables\Columns\TextColumn::make('deskripsi')
+                    ->label('Deskripsi'),
                 Tables\Columns\TextColumn::make('work_duration')
                     ->label('Durasi Kerja')
                     ->getStateUsing(function ($record) {
